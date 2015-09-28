@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://esup-data.univ-paris1.fr/esup/canal/portlet-compat.css" rel="stylesheet" type="text/css" />
+    <link href="../epi/epi.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+
+  <script type="text/javascript">   
+   window.bandeau_ENT = { currentAppIds: ["moodle-epi-ens",'esup-lecture-epi-teacher'] };
+   window.bandeau_ENT.onload = function (DATA, PARAMS, CONF) {
+     console.log(DATA.userAttrs);
+     if (DATA.user) {
+       window.uid = DATA.user;
+       if (window.get) window.get();
+     }
+   };
+  </script>
+  <script src="https://esup-test.univ-paris1.fr/ProlongationENT/loader.js"></script>
+
+<div id="globalcontainer" class="moodle-epi-ens">
+    
+<div class="intro">
+<p >
+<b>Cette page donne accès à vos Espaces pédagogiques interactifs (EPI). </b><br> <br>
+Elle est constituée automatiquement à partir de vos données de profil et de vos autorisations de contribution. Si l'espace que vous recherchez 
+n'y apparait pas, il est recommandé de consulter :</p>
+
+<a href="https://cours.univ-paris1.fr/">Accueil EPI</a> &#124; 
+<a href="https://cours.univ-paris1.fr/mod/page/view.php?id=55142&SUIVI=ENTenseignement">Index des espaces 2015-2016</a> &#124; 
+<a href="https://cours.univ-paris1.fr/course/view.php?id=2231&SUIVI=ENTenseignement">Questions fréquentes</a> &#124; 
+<a href="https://cours.univ-paris1.fr/course/view.php?id=97&SUIVI=ENTenseignement">Mode d'emploi</a>   
+
+</div>
+	
+
+<p align="right"><a href="http://www.univ-paris1.fr/services/sun/epi/">
+Présentation générale des EPI (www.univ-paris1.fr/epi)</a>
+</p> 
+
+
+<script type="text/javascript" src="https://cours.univ-paris1.fr/local/jquery/jquery.js" > </script>
+<script type="text/javascript" src="https://cours.univ-paris1.fr/local/widget_courselist/courselist.js" > </script>
+
+<h3 class="portlet-section-header fl-push">Mes espaces sur cours.univ-paris1.fr</h3>
+
+<div class="flash2">
+NB : Vos EPI 2014-2015 sont archivés. Les étudiants n'y ont plus accès. 
+Pour les recréer sur l'index 2015-2016, vous devez les dupliquer.</div>
+
+<div id="widget-courselist-misc">En cours, veuillez patienter...</div>
+  </div>
+
+<script>
+ window.get = function () {
+   var criteria = {
+     enrolledexact: window.uid + "@univ-paris1.fr",
+     enrolledroles: [3,4,10], // roles "editingteacher" "teacher" "Correspondant TICE"
+     format: "table",
+     table: { bPaginate: false, bFilter: false, bInfo: false }
+   };
+   jQuery("#widget-courselist-misc").courselist(criteria);
+ };
+ if (window.uid) window.get(); 
+</script>
+
+</body>
+</html>

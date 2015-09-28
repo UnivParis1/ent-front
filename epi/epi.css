@@ -1,0 +1,38 @@
+#globalcontainer {
+   margin: 1em;
+ }
+ 
+.intro { background-color: #fff; color: #555;  
+ 	background-image:url(EPIshadow3.jpg); 
+	background-repeat:no-repeat; 
+
+ 	border:solid #384E65 1px; border-top:solid #384E65 2px; border-bottom:dotted #384E65 1px;
+	padding: 15px !important;  
+	padding-left:165px !important;
+	line-height: 1.2em; font-family: Verdana,Tahoma, Arial, Helvetica, sans-serif;
+
+}
+
+.intro ul { margin-left:20px;}
+
+ h3.portlet-section-header {
+   color:#003366 !important; font-size:15pt; font-weight:normal !important; border:0 !important;
+   font-family: Arial, Tahoma, Helvetica, sans-serif;
+   margin: 0;
+ }
+
+
+.eee-info {
+    display: none;
+}
+
+.flash2 { color: #EA681D;  	 
+	padding: 0px;  padding-left :6px; border-left:3px solid #EA681D;
+	margin:15px;  margin-left:0px;  
+	font-family:Arial, Helvetica, sans-serif;
+
+}
+
+.moodle-epi-ens .generaltable.sortable.dataTable TH { background-color: #FFDBC4 !important; }
+.moodle-epi-ens .generaltable.sortable.dataTable TH { background-color:  #F7E4D5 !important; }
+.moodle-epi-ens .odd TD {  background-color: #ddd !important;} 

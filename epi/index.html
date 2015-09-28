@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://esup-data.univ-paris1.fr/esup/canal/portlet-compat.css" rel="stylesheet" type="text/css" />
+    <link href="epi.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+  <script type="text/javascript">   
+   window.bandeau_ENT = { currentAppIds: ["moodle-epi",'esup-lecture-epi'] };
+   window.bandeau_ENT.onload = function (DATA, PARAMS, CONF) {
+     console.log(DATA.userAttrs);
+     if (DATA.user) {
+       window.uid = DATA.user;
+       if (window.get) window.get();
+     }
+   };
+  </script>
+  <script src="https://esup-test.univ-paris1.fr/ProlongationENT/loader.js"></script>
+
+<div id="globalcontainer" class="moodle-epi">
+    
+<div class="intro">
+<p >
+Cette page donne accès à vos Espaces pédagogiques interactifs (EPI). 
+Elle est constituée automatiquement à partir de vos données de profil et 
+de vos autorisations de contribution. Si l'espace que vous recherchez 
+n'y apparait pas, il est recommandé de consulter :</p>
+
+<ul >
+ <li><a href="https://cours.univ-paris1.fr/mod/page/view.php?id=55142">Index des espaces de cours 2015-2016</a></li>
+ <li><a href="https://cours.univ-paris1.fr/course/view.php?id=12">Guide étudiant des EPI</a></li>
+
+</ul>
+
+
+</div>
+	
+
+<p>&nbsp;</p>
+
+<div class="eee-info">
+  Du 1er décembre au 5 janvier 2014, nous vous invitons à donner votre avis sur les enseignements que vous avez suivis.
+  <br>
+  <a href="https://idp.univ-paris1.fr/idp/profile/Shibboleth/SSO?shire=https://eee.univ-paris1.fr/Shibboleth.sso/SAML/POST&target=https://eee.univ-paris1.fr/auth/shibboleth/index.php&providerId=https://eee.univ-paris1.fr">Accédez aux questionnaires</a>
+</div>
+
+<script type="text/javascript" src="https://cours.univ-paris1.fr/local/jquery/jquery.js" > </script>
+<script type="text/javascript" src="https://cours.univ-paris1.fr/local/widget_courselist/courselist.js" > </script>
+
+<h3 class="portlet-section-header fl-push">Mes espaces sur cours.univ-paris1.fr</h3>
+
+<div id="widget-courselist-misc">En cours, veuillez patienter...</div>
+  </div>
+
+<script>
+ window.get = function () {
+   var criteria = {
+     enrolledexact: window.uid + "@univ-paris1.fr",
+     enrolledroles: 5, // role "student"
+     format: "table",
+     table: { bPaginate: false, bFilter: false, bInfo: false }
+   };
+   jQuery("#widget-courselist-misc").courselist(criteria);
+
+   criteria.format = 'json';
+   
+   $.ajax({
+     url: 'https://eee.univ-paris1.fr/local/widget_courselist/list.php',
+     dataType: "jsonp",
+     crossDomain: true,
+     data: criteria,
+     success: function(list) {
+       if (list && list.length) {
+	 $(".eee-info").css('display', 'block')
+       }
+     }
+   });
+ };
+ if (window.uid) window.get(); 
+</script>
+
+</body>
+</html>
