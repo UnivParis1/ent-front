@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Environnement de Travail Paris 1 : Accueil</title>
 
-    <link href="https://esup-data.univ-paris1.fr/esup/canal/portlet-compat.css" rel="stylesheet" type="text/css" />
-    <link href="epi.css" rel="stylesheet" type="text/css" />
+  <link href="https://esup-data.univ-paris1.fr/esup/canal/portlet-compat.css" rel="stylesheet" type="text/css">
+  <link href="epi.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
   <script type="text/javascript">   
    window.bandeau_ENT = { currentAppIds: ["moodle-epi",'esup-lecture-epi'] };
    window.bandeau_ENT.onload = function (DATA, PARAMS, CONF) {
-     console.log(DATA.userAttrs);
      if (DATA.user) {
        window.uid = DATA.user;
        if (window.get) window.get();
