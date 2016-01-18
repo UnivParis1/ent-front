@@ -52,31 +52,22 @@
    return classes;
  }
  
-var r = window.location.pathname.match(/accueil-ent-(etu|pers|ens|biatss|default)/);
-var classes = [];
-if (r) {
-   var kind = r[1];
-   classes = [kind];
-   if (kind === 'ens' || kind === 'biatss') {
-     // if ens|biatss, user is also pers
-     classes.push('pers');
-   }
-   setKinds(classes);
- } else if (window.parent && window.parent.up) {
-   var affiliations = window.parent.up.userAttributes.eduPersonAffiliation;
-   if (affiliations) {
-     var affiliations = affiliations.split(";");
-     setKinds(affiliations2classes(affiliations));
-   }	 
-} else {
-   window.bandeau_ENT.onload = function (DATA, PARAMS, CONF) {
-   if (DATA.userAttrs && DATA.userAttrs.eduPersonAffiliation)
-     setKinds(affiliations2classes(DATA.userAttrs.eduPersonAffiliation));
- };
-}
- 
+window.bandeau_ENT.onload = function (DATA, PARAMS, CONF) {
+   var userAttrs = DATA.userAttrs || DATA.person;
+   if (userAttrs && userAttrs.eduPersonAffiliation)
+     setKinds(affiliations2classes(userAttrs.eduPersonAffiliation));
+};
 </script>
+
 <script src='../common/static-ProlongationENT.js'></script>
+
+<script>
+if (window.parent != window) {
+    // ugly hack until there is no iframe anymore!
+    document.write("<script" + " src='https://ent-test.univ-paris1.fr/ProlongationENT/js'><" + "/script>");
+    document.write("<style" + "> #bandeau_ENT, #bandeau_ENT_Footer { display: none; } <" + "/style>");
+}
+</script>
 
     <div id="contenu-gauche">
       <img src="images/bienvenue2015.png" alt="" />
