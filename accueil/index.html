@@ -31,8 +31,10 @@
     return r;
  }
 
- function setKinds(classes) {
-   var classesFlat = simpleMap(classes, function (c) { return "kind-" + c ; }).join(' ');
+ function setClasses(kinds, apps) {
+   var classes1 = simpleMap(kinds, function (c) { return "kind-" + c ; });
+   var classes2 = simpleMap(apps, function (a) { return "app-" + a.toLowerCase() ; });
+   var classesFlat = classes1.join(' ') + ' ' + classes2.join(' ');
    //console.log(classesFlat);
    document.getElementById("globalcontainer").className = classesFlat;
  }
@@ -55,7 +57,7 @@
 window.bandeau_ENT.onload = function (DATA, PARAMS, CONF) {
    var userAttrs = DATA.userAttrs || DATA.person;
    if (userAttrs && userAttrs.eduPersonAffiliation)
-     setKinds(affiliations2classes(userAttrs.eduPersonAffiliation));
+     setClasses(affiliations2classes(userAttrs.eduPersonAffiliation), Object.keys(DATA.apps));
 };
 </script>
 
@@ -64,10 +66,19 @@ window.bandeau_ENT.onload = function (DATA, PARAMS, CONF) {
 <script>
 if (window.parent != window) {
     // ugly hack until there is no iframe anymore!
-    document.write("<script" + " src='https://ent-test.univ-paris1.fr/ProlongationENT/js'><" + "/script>");
-    document.write("<style" + "> #bandeau_ENT, #bandeau_ENT_Footer { display: none; } <" + "/style>");
+    document.write("<script" + " src='https://esup-test.univ-paris1.fr/ProlongationENT/js'><" + "/script>");
+    document.write("<style" + "> #bandeau_ENT, #bandeau_ENT_Footer, .hide-if-iframe { display: none; } <" + "/style>");
 }
 </script>
+
+<div class="hide-if-iframe">
+<div class="if-app-accueil-bis">
+  <a href="https://idp.univ-paris1.fr/shibboleth-idp/SSO?shire=https%3A%2F%2Fbisintra.univ-paris1.fr%2FShibboleth.sso%2FSAML%2FPOST&target=https%3A%2F%2Fbisintra.univ-paris1.fr&providerId=https%3A%2F%2Fbisintra.univ-paris1.fr" target="_parent">
+    <img src="images/acces-ibis.png" border="0" alt="Intranet BIS" title="Accès à l'Intranet de la BIS" />
+  </a>
+  <p style="height: 1em"/>
+</div>
+</div>
 
     <div id="contenu-gauche">
       <img src="images/bienvenue2015.png" alt="" />
