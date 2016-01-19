@@ -53,8 +53,17 @@
    });
    return classes;
  }
+
+if (!document.location.hash.match(/login/)) {
+   window.bandeau_ENT.onNotLogged = function (CONF) {
+     document.location = CONF.cas_login_url + "?service=" + encodeURIComponent(document.location + "#login");
+   };
+}
  
 window.bandeau_ENT.onload = function (DATA, PARAMS, CONF) {
+   // cool, we logged in. now we can clean url
+   if (document.location.hash) document.location.hash = '';
+   
    var userAttrs = DATA.userAttrs || DATA.person;
    if (userAttrs && userAttrs.eduPersonAffiliation)
      setClasses(affiliations2classes(userAttrs.eduPersonAffiliation), Object.keys(DATA.apps));
