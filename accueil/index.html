@@ -63,6 +63,9 @@ if (!document.location.hash.match(/login/)) {
 window.bandeau_ENT.onload = function (DATA, PARAMS, CONF) {
    // cool, we logged in. now we can clean url
    if (document.location.hash) document.location.hash = '';
+
+   // remove splash screen
+   document.getElementById("loading").className = "hidden";
    
    var userAttrs = DATA.userAttrs || DATA.person;
    if (userAttrs && userAttrs.eduPersonAffiliation)
@@ -79,6 +82,10 @@ if (window.parent != window) {
     document.write("<style" + "> #bandeau_ENT, #bandeau_ENT_Footer, .hide-if-iframe { display: none; } <" + "/style>");
 }
 </script>
+
+
+<link href="../common/loading.css" type="text/css" rel="stylesheet">
+<div id="loading"> <div><img></div> </div>
 
 <div class="hide-if-iframe">
 <div class="if-app-accueil-bis">
