@@ -93,3 +93,16 @@
 .kind-pers .liste-service li.if-kind-pers {
     display: inline;
 }
+
+.if-not-mobile {
+    display: none;
+}
+
+@media screen and (min-width: 800px) and (min-device-width: 800px) {
+    .if-mobile {
+        display: none;
+    }
+    .if-not-mobile {
+        display: block;
+    }
+}

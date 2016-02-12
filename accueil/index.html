@@ -13,7 +13,7 @@
 
 <script type="text/javascript">
      
- window.bandeau_ENT = { current: "caccueil" };
+ window.bandeau_ENT = { current: "caccueil", no_titlebar: true };
      
  function simpleEach(a, fn) {
     var len = a.length;
@@ -66,6 +66,9 @@ window.bandeau_ENT.onload = function (DATA, PARAMS, CONF) {
 
    // remove splash screen
    document.getElementById("loading").className = "hidden";
+
+   // force menu open, even if mobile
+   document.getElementById('bandeau_ENT_Inner').className = 'menuOpen';
    
    var userAttrs = DATA.userAttrs || DATA.person;
    if (userAttrs && userAttrs.eduPersonAffiliation)
@@ -96,6 +99,7 @@ if (window.parent != window) {
 </div>
 </div>
 
+<div class="if-not-mobile">
     <div id="contenu-gauche">
       <img src="images/bienvenue2015.png" alt="" />
       <br />
@@ -217,5 +221,13 @@ if (window.parent != window) {
       </div>
     </div>
   </div>
+</div>
+
+<div class="if-mobile" style='padding: 0.5em 0 0 1em' >
+  <img src="images/bienvenue-mobile.png" alt=""/>
+  <p>
+    Cliquez sur « ENT » en haut à droite pour afficher les outils mis à votre disposition.
+</div>
+
 </body>
 </html>
