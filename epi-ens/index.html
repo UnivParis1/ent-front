@@ -12,9 +12,13 @@
 
   <script type="text/javascript">   
    window.bandeau_ENT = { currentAppIds: ["moodle-epi-ens",'esup-lecture-epi-teacher'] };
-   window.bandeau_ENT.onload = function (DATA, PARAMS, CONF) {
-     if (DATA.user) {
-       window.uid = DATA.user;
+   window.bandeau_ENT.onload = function (pE) {
+     if (pE.person && pE.person.id) {
+       window.uid = pE.person.id;
+       if (window.get) window.get();
+     }
+     if (pE.DATA.user) {
+       window.uid = pE.DATA.user;
        if (window.get) window.get();
      }
    };

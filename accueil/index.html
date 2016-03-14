@@ -31,6 +31,15 @@
     return r;
  }
 
+ function getValidApps(DATA) {
+    if (DATA.apps) return Object.keys(DATA.apps);
+    var l = [];
+    simpleEach(DATA.layout.folders, function (tab) {
+	l.push.apply(l, tab.portlets);
+    });
+    return simpleMap(l, function (e) { return e.fname });
+ }
+
  function setClasses(kinds, apps) {
    var classes1 = simpleMap(kinds, function (c) { return "kind-" + c ; });
    var classes2 = simpleMap(apps, function (a) { return "app-" + a.toLowerCase() ; });
@@ -55,12 +64,12 @@
  }
 
 if (!document.location.hash.match(/login/)) {
-   window.bandeau_ENT.onNotLogged = function (CONF) {
-     document.location = CONF.cas_login_url + "?service=" + encodeURIComponent(document.location + "#login");
+   window.bandeau_ENT.onNotLogged = function (pE) {
+     document.location = pE.CONF.cas_login_url + "?service=" + encodeURIComponent(document.location + "#login");
    };
 }
  
-window.bandeau_ENT.onload = function (DATA, PARAMS, CONF) {
+window.bandeau_ENT.onload = function (pE) {
    // cool, we logged in. now we can clean url
    if (document.location.hash) document.location.hash = '';
 
@@ -70,9 +79,9 @@ window.bandeau_ENT.onload = function (DATA, PARAMS, CONF) {
    // force menu open, even if mobile
    document.getElementById('bandeau_ENT_Inner').className = 'menuOpen';
    
-   var userAttrs = DATA.userAttrs || DATA.person;
+   var userAttrs = pE.DATA.userAttrs;
    if (userAttrs && userAttrs.eduPersonAffiliation)
-     setClasses(affiliations2classes(userAttrs.eduPersonAffiliation), Object.keys(DATA.apps));
+     setClasses(affiliations2classes(userAttrs.eduPersonAffiliation), getValidApps(pE.DATA));
 };
 </script>
 
