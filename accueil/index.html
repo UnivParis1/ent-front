@@ -68,20 +68,22 @@ if (!document.location.hash.match(/login/)) {
      document.location = pE.CONF.cas_login_url + "?service=" + encodeURIComponent(document.location + "#login");
    };
 }
- 
-window.bandeau_ENT.onload = function (pE) {
+function withInfo(DATA) {
    // cool, we logged in. now we can clean url
    if (document.location.hash) document.location.hash = '';
 
    // remove splash screen
    document.getElementById("loading").className = "hidden";
-
+   
+   var userAttrs = DATA.userAttrs;
+   if (userAttrs && userAttrs.eduPersonAffiliation)
+     setClasses(affiliations2classes(userAttrs.eduPersonAffiliation), getValidApps(DATA));
+}
+window.bandeau_ENT.onload = function (pE) {
    // force menu open, even if mobile
    document.getElementById('bandeau_ENT_Inner').className = 'menuOpen';
-   
-   var userAttrs = pE.DATA.userAttrs;
-   if (userAttrs && userAttrs.eduPersonAffiliation)
-     setClasses(affiliations2classes(userAttrs.eduPersonAffiliation), getValidApps(pE.DATA));
+
+   withInfo(pE.DATA, true);
 };
 </script>
 
@@ -92,9 +94,7 @@ window.bandeau_ENT.onload = function (pE) {
 
 <script>
 if (window.parent != window) {
-    // ugly hack until there is no iframe anymore!
-    document.write("<script" + " src='https://esup-test.univ-paris1.fr/ProlongationENT/js'><" + "/script>");
-    document.write("<style" + "> #bandeau_ENT, #bandeau_ENT_Footer, .hide-if-iframe { display: none; } <" + "/style>");
+    document.write("<script" + " src='https://esup-test.univ-paris1.fr/ProlongationENT/layout?callback=withInfo'><" + "/script>");
 }
 </script>
 
