@@ -1,0 +1,114 @@
+.subtitle {
+    font-family: "Brandon Grotesque Bold", Arial, sans-serif;
+    color: #00326E;
+    position: absolute;
+    top: 52px;
+    left: 53px;
+}
+
+.search {
+    margin-top: 3em;
+    margin-bottom: 2em;
+    text-align: center;
+}
+
+.liste-service {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.liste-service ul{
+	font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-weight: normal;
+    display: inline-block;
+    Xflex-flow: row wrap;
+    list-style: none outside none;
+    padding: 0;
+    Xjustify-content: space-around;
+    text-align: center;
+}
+.liste-service li {
+    display: inline-block;
+    vertical-align: top;
+    margin: 11px 0.7em 0.2em;
+    position: relative;
+    font-size: 13px;
+    height: 8em; /*4.5em;*/
+    width: 16.5em;
+    Xflex: 0 0 16.5em;
+    text-align: left;
+}
+
+@media screen and (max-width: 700px) {
+    .liste-service li {
+        font-size: 10px;
+    }
+    .subtitle {
+        display: none;
+    }
+    .search {
+        margin-top: 1em;
+        margin-bottom: 0;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .liste-service li {
+        margin-left: 0.3em;
+        margin-right: 0.3em;
+        Xflex: 0 0 100%;
+        Xwidth: 100%;
+        width: 15em;
+    }
+}
+
+.liste-service li.padding {
+    height: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.liste-service li a {
+    text-decoration: none;
+}
+
+.liste-service .title .title-text {
+    color: #2e5693;
+    font-size: 125%;
+    vertical-align: middle;
+    display: table-cell;
+    height: 3em;
+}
+.liste-service .title {
+    box-sizing: border-box;
+    display: block;
+    background: #d5dceb;
+    padding-left: 0.9em;
+    
+    -moz-border-radius : 7px 7px 0 0;
+    border-radius : 7px 7px 0 0;
+    -webkit-border-top-left-radius : 7px;
+    -webkit-border-top-right-radius : 7px;
+}
+.liste-service .description {
+    color: #000;
+    padding: 1em;
+    display: inline-block;
+    font-size: 90%;
+    border-left: 2px solid #d5dceb;
+}
+.liste-service .title a:hover {
+    color: #8d8767 !important;
+}
+.liste-service .title a:visited {
+    color: #2e5693;
+}
+
+.liste-service .title img {
+    float: right;   
+    width: 3.23em;
+    height: 3.23em;
+    opacity: 0.2;
+    margin: 0.31em 0.38em 0 0;
+}
