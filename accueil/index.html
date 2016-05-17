@@ -12,6 +12,22 @@
 <div id="globalcontainer">
 
 <script type="text/javascript">
+
+ var THEME_COOKIE_NAME = "ProlongationENT_theme";
+
+ function getCookie(name) {
+    var m = document.cookie.match(new RegExp(name + '=([^;]+)'));
+    return m && m[1];
+}
+ 
+ function setThemeCookie(theme) {
+   document.cookie = THEME_COOKIE_NAME + "=" + theme + ";domain=.univ-paris1.fr;path=/" + (theme ? '' : ";expires=Thu, 01 Jan 1970 00:00:01 GMT;");
+   document.location.reload();
+ }    
+
+ if (getCookie(THEME_COOKIE_NAME) === 'theme-paris1-2016') {
+   document.location = 'https://ent-test.univ-paris1.fr/accueil-2016/';
+ }
      
  window.bandeau_ENT = { current: "caccueil", no_titlebar: true };
      
