@@ -4,13 +4,14 @@ var THEME_COOKIE_NAME = "ProlongationENT_theme";
 
 function setThemeCookie(theme) {
   document.cookie = THEME_COOKIE_NAME + "=" + theme + ";domain=.univ-paris1.fr;path=/" + (theme ? '' : ";expires=Thu, 01 Jan 1970 00:00:01 GMT;");
-  document.location.reload();
 }
 
 if (window.parent != window) {
   // no iframe
   document.location = 'https://ent-test.univ-paris1.fr/accueil/';
 }
+
+setThemeCookie('theme-paris1-2016');
 
 window.bandeau_ENT = { current: "caccueil", no_titlebar: true };
 
