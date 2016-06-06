@@ -51,7 +51,7 @@ function computeLink(app) {
   var url = app.url;
   var a = "<a title='" + h.escapeQuotes(app.description) + "' href='" + url + "'>" +
            "<span class='title'>" +
-             "<img src='" + pE.CONF.prolongationENT_url + "/" + pE.CONF.theme + "/icon/" + simplifyFname(app.fname) + ".png' onerror='this.style.display=\"none\"' >" +
+             "<img src='" + pE.CONF.prolongationENT_url + "/" + pE.CONF.theme + "/icon/" + simplifyFname(app.fname) + ".svg' onerror='this.style.display=\"none\"' >" +
              "<span class='title-text'>" + formatAppField(app.text || app.title) + "</span>" +
            "</span>" +
            "<span class='description'>" + formatAppField(app.description) + "</span>" +
