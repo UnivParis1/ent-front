@@ -40,6 +40,26 @@ function objectValues(o) {
     return h.simpleMap(Object.keys(o), function (k) { return o[k]; });
 }
 
+function tomorrow() {
+    var d = new Date();
+    d.setDate(d.getDate() + 1);
+    return d;
+}
+
+function sessionStorageGet(field) {
+    try {
+        var s = sessionStorage.getItem(field);
+        var o = s && JSON.parse(s);
+        if (o && o.expire > h.now()) return o.v;
+    } catch (err) {}
+    return null;
+}
+function sessionStorageSet(field, value, lifetime) {
+    try {
+        sessionStorage.setItem(field, JSON.stringify({ expire: lifetime.getTime(), v: value }));
+    } catch (err) {}
+}
+
 function formatAppField(s) {
   s = h.escapeQuotes(s);
   return searchAnyWords ? s.replace(searchAnyWords, function (word) {
@@ -111,7 +131,10 @@ function displayLinks() {
 };
 
 window.onLoadTopApps = function (DATA) {
-  if (DATA && DATA.topApps) latestTopApps = DATA.topApps;
+  if (DATA && DATA.topApps) {
+    latestTopApps = DATA.topApps;
+    sessionStorageSet("latestTopApps", latestTopApps, tomorrow());
+  }
   if (inProgress) {
     inProgress = false;
     displayLinks();
@@ -148,7 +171,12 @@ function withInfo() {
     displayLinks();
   };
   
-  loadBandeauJs(['latestTopApps']);
+  latestTopApps = sessionStorageGet("latestTopApps");
+  if (latestTopApps) {
+      displayLinks();
+  } else {
+      loadBandeauJs(['latestTopApps']);
+  }
 }
 
 if (!document.location.hash.match(/login/)) {
