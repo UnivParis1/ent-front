@@ -1,15 +1,84 @@
+@font-face {
+font-family: 'Brandon Grotesque';
+src: url('//www.univ-paris1.fr/fileadmin/templates/v2/font/brandon_grotesque.eot?') format('eot'),
+     url('//www.univ-paris1.fr/fileadmin/templates/v2/font/brandon_grotesque.otf') format('truetype'),
+     url('//www.univ-paris1.fr/fileadmin/templates/v2/font/brandon_grotesque.woff') format('woff'),
+     url('//www.univ-paris1.fr/fileadmin/templates/v2/font/brandon_grotesque.svg#BrandonGrotesque') format('svg');
+font-weight: normal;
+font-style: normal;
+}
+
+
+html {
+    font-family: Arial,Helvetica,sans-serif;
+}
+
 .subtitle {
-    font-family: "Brandon Grotesque Bold", Arial, sans-serif;
     color: #00326E;
     position: absolute;
-    top: 52px;
+    top: 58px;
+    font-size: 15px;
     left: 53px;
 }
 
 .search {
-    margin-top: 3em;
-    margin-bottom: 2em;
     text-align: center;
+    margin: 2em 0 0.5em;
+}
+
+.liste-tags {
+    position: relative;
+}
+.liste-tags > div {
+    overflow-x: auto;
+}
+.liste-tags {
+    text-align: center;
+    margin-bottom: 1.5em;
+    margin-left: 2em;
+    font-size: 9px;
+
+    text-transform: uppercase;
+    font-family: "Brandon Grotesque", Arial, sans-serif;
+
+    white-space: nowrap;
+}
+
+.liste-tags::-webkit-scrollbar {
+    display: none;
+}
+
+.blur-right {
+    background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1));
+    position: absolute;
+    pointer-events: none;
+    right: 0;
+    top: 0;
+    height: 2.5em;
+    width: 40px;
+    z-index: 2;
+}
+
+.liste-tags a {
+    text-decoration: none;
+    color: #777;
+    padding: 0.55rem 1em;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.liste-tags a.selected {
+    color: #C89108;
+    border-bottom: 3px solid #C89108;
+}
+
+XX.search a.searchButton {
+background-color: #fff;
+background-image: url(https://ent.univ-paris1.fr/ProlongationENT/theme-paris1/Loupe.svg);
+background-repeat: no-repeat;
+background-size: 15px auto;
+background-position: 0 12px;
+padding-right: 1.5em;
 }
 
 .liste-service {
@@ -19,8 +88,6 @@
 }
 
 .liste-service ul{
-	font-family: Verdana,Arial,Helvetica,sans-serif;
-    font-weight: normal;
     display: inline-block;
     Xflex-flow: row wrap;
     list-style: none outside none;
@@ -31,7 +98,7 @@
 .liste-service li {
     display: inline-block;
     vertical-align: top;
-    margin: 11px 0.7em 0.2em;
+    margin: 11px 0.7em 1em;
     position: relative;
     font-size: 13px;
     height: 8em; /*4.5em;*/
@@ -48,9 +115,18 @@
         display: none;
     }
     .search {
-        margin-top: 1em;
-        margin-bottom: 0;
+        margin: 0;
     }
+    .search input {
+        width: 95%;
+        box-sizing: border-box;
+
+    }
+    .liste-tags {
+        margin-bottom: 0;
+        font-size: 7px;
+    }
+    
 }
 
 @media screen and (max-width: 360px) {
@@ -92,11 +168,12 @@
     -webkit-border-top-right-radius : 7px;
 }
 .liste-service .description {
-    color: #000;
-    padding: 1em;
+    color: #666;
+    padding: 1em 1em 0.2em;
     display: inline-block;
     font-size: 90%;
     border-left: 2px solid #d5dceb;
+    height: 2.8em;
 }
 .liste-service .title a:hover {
     color: #8d8767 !important;
@@ -111,4 +188,5 @@
     height: 3.23em;
     opacity: 0.2;
     margin: 0.31em 0.38em 0 0;
+    display: none;
 }
