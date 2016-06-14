@@ -90,12 +90,13 @@ function formatAppField(s) {
 
 function computeLink(app) {
   var url = app.url;
-  var a = "<a title='" + h.escapeQuotes(app.description) + "' href='" + url + "'>" +
+  var description = app.description || app.title;
+  var a = "<a title='" + h.escapeQuotes(description) + "' href='" + url + "'>" +
            "<span class='title'>" +
              "<img src='" + pE.CONF.prolongationENT_url + "/" + pE.CONF.theme + "/icon/" + simplifyFname(app.fname) + ".svg' onerror='this.style.display=\"none\"' >" +
              "<span class='title-text'>" + formatAppField(app.text || app.title) + "</span>" +
            "</span>" +
-           "<span class='description'>" + formatAppField(app.description) + "</span>" +
+           "<span class='description'>" + formatAppField(description) + "</span>" +
            "</a>";
   return "<li>" + a + "</li>";
 }
