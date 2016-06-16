@@ -240,3 +240,42 @@ padding-right: 1.5em;
     margin: 0.31em 0.38em 0 0;
     display: none;
 }
+
+
+#vers-ancien-ent {
+    position: fixed;
+    top: 47vh;
+    right: -8.3em;
+    z-index: 1;
+}
+
+@media screen and (min-width: 1350px) {
+    #vers-ancien-ent {
+        right: 0;
+    }
+}
+
+#vers-ancien-ent:hover {
+    right: 0;
+}
+
+#vers-ancien-ent > div {
+    padding: 0.5em 0;
+}
+#vers-ancien-ent > div > div {
+    box-shadow: 0 0 1em white;
+    background: #00326E;
+    padding: 1em;
+    font-size: 12px;
+    padding: 0.5em 0.3em 0.5em 1em;
+    border-left: 3px solid #C89108;
+}
+#vers-ancien-ent a {
+    color: white;
+    text-decoration: none;
+}
+#vers-ancien-ent img {
+    height: 1.1em;
+    vertical-align: middle;
+    padding-right: 0.3em;
+}
