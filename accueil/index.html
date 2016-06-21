@@ -30,7 +30,7 @@
    document.location = 'https://ent-test.univ-paris1.fr/accueil-2016/';
  }
      
- window.bandeau_ENT = { current: "caccueil", no_titlebar: true };
+ window.bandeau_ENT = { current: "caccueil", delegateAuth: true, no_titlebar: true };
      
  function simpleEach(a, fn) {
     var len = a.length;
@@ -80,11 +80,6 @@
    return classes;
  }
 
-if (!document.location.hash.match(/login/)) {
-   window.bandeau_ENT.onNotLogged = function (pE) {
-     document.location = pE.CONF.cas_login_url + "?service=" + encodeURIComponent(document.location + "#login");
-   };
-}
 function withInfo(DATA) {
    // cool, we logged in. now we can clean url
    if (document.location.hash) document.location.hash = '';

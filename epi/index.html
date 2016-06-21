@@ -11,7 +11,7 @@
 <body>
 
   <script type="text/javascript">   
-   window.bandeau_ENT = { currentAppIds: ["moodle-epi",'esup-lecture-epi'] };
+   window.bandeau_ENT = { currentAppIds: ["moodle-epi",'esup-lecture-epi'], delegateAuth: true };
    window.bandeau_ENT.onload = function (pE) {
      if (pE.person && pE.person.id) {
        window.uid = pE.person.id;

@@ -13,7 +13,7 @@ if (window.parent != window) {
 
 setThemeCookie('theme-paris1-2016');
 
-window.bandeau_ENT = { current: "caccueil", no_titlebar: true };
+window.bandeau_ENT = { current: "caccueil", no_titlebar: true, delegateAuth: true };
 
 var pE, h, latestTopApps, tags;
 var searchWords = [];
@@ -232,21 +232,10 @@ function addTags() {
     });    
 }
 
-if (!document.location.hash.match(/login/)) {
-  window.bandeau_ENT.onNotLogged = function (pE) {
-    document.location = pE.CONF.cas_login_url + "?service=" + encodeURIComponent(document.location + "#login");
-  };
-}
-
 window.bandeau_ENT.onload = function (pE_) {
   pE = pE_;
   h = pE.helpers;    
   addTags();
-
-  // cool, we logged in. now we can clean url
-    if (document.location.hash) {
-        document.location.hash = document.location.hash.replace(/#login.*/, '');
-    }
     
   useHashParam();
   window.onhashchange = useHashParam;
