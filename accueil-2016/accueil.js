@@ -8,7 +8,7 @@ function setThemeCookie(theme) {
 
 if (window.parent != window) {
   // no iframe
-  document.location = 'https://ent-test.univ-paris1.fr/accueil/';
+  window.top.location.href = document.location;
 }
 
 setThemeCookie('theme-paris1-2016');
