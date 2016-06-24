@@ -133,7 +133,7 @@ function setSearchWords(toMatch) {
 }
 
 function displayLinks() {
-  var done = { caccueil: true };
+  var done = { caccueil: true, 'accueil-2016': true };
 
   h.simpleQuerySelector("#liste-tags-inner").innerHTML = h.simpleMap(tags, function (tag) {
       var className = asciifie(tag).match(searchWords.length ? searchAnyWords : 'Tous') ? 'selected' : '';
