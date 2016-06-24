@@ -6,7 +6,8 @@
  	background-image:url(EPIshadow3.jpg); 
 	background-repeat:no-repeat; 
 
- 	border:solid #384E65 1px; border-top:solid #384E65 2px; border-bottom:dotted #384E65 1px;
+ 	border:solid #384E65 1px; border-top:solid #384E65 2px; 
+	border:none; border-bottom:dotted #384E65 1px;
 	padding: 15px !important;  
 	padding-left:165px !important;
 	line-height: 1.2em; font-family: Verdana,Tahoma, Arial, Helvetica, sans-serif;
