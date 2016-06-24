@@ -165,7 +165,7 @@ function displayLinks() {
 window.onLoadTopApps = function (DATA) {
   if (DATA && DATA.topApps) {
     latestTopApps = DATA.topApps;
-    sessionStorageSet("latestTopApps", latestTopApps, tomorrow());
+    sessionStorageSet("latestTopApps:" + pE.DATA.user, latestTopApps, tomorrow());
   }
   if (inProgress) {
     inProgress = false;
@@ -213,7 +213,7 @@ function withInfo() {
     displayLinks();
   };
     
-  latestTopApps = sessionStorageGet("latestTopApps");
+  latestTopApps = sessionStorageGet("latestTopApps:" + pE.DATA.user);
   if (latestTopApps) {
       displayLinks();
   } else {
