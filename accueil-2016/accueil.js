@@ -190,8 +190,7 @@ function useHashParam() {
     if (value) {
         if (value === 'Tous') value = '';
         var search_input = h.simpleQuerySelector('.search input');
-        //search_input.value = value + " ";
-        //if (search_input.oninput) search_input.oninput();
+        search_input.value = '';
         setSearchWords(value);
         displayLinks();
         
@@ -209,6 +208,7 @@ function withInfo() {
   var search_input = h.simpleQuerySelector('.search input');
   if (search_input.value) setSearchWords(search_input.value);
   search_input.oninput = function () {
+    document.location.hash = '';
     setSearchWords(this.value);
     displayLinks();
   };
