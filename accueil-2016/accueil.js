@@ -67,6 +67,22 @@ function tomorrow() {
     return d;
 }
 
+function raw_xhr(url) {
+    var req = new XMLHttpRequest();
+    if (!req) return;
+    req.open("GET", url, true);
+    req.responseType = 'text';
+    req.send(null);
+}
+var timeoutID;
+function server_log(msg) {
+    if (timeoutID) window.clearTimeout(timeoutID);
+    timeoutID = setTimeout(function () {
+        raw_xhr("log?" + msg);
+    }, 750);
+}
+
+
 function sessionStorageGet(field) {
     try {
         var s = sessionStorage.getItem(field);
@@ -160,6 +176,7 @@ function displayLinks() {
     var html = block(l.slice(0, nbFirst)) +
         (l.length > nbFirst ? block(l.slice(nbFirst)) : '');
   h.simpleQuerySelector(".liste-service").innerHTML = html;   
+    return l.length;
 };
 
 window.onLoadTopApps = function (DATA) {
@@ -210,7 +227,8 @@ function withInfo() {
   search_input.oninput = function () {
     document.location.hash = '';
     setSearchWords(this.value);
-    displayLinks();
+    var nbApps = displayLinks();
+    if (this.value.length > 2) server_log("id=" + encodeURIComponent(pE.DATA.user) + "&results=" + nbApps + "&search=" + encodeURIComponent(this.value));
   };
     
   latestTopApps = sessionStorageGet("latestTopApps:" + pE.DATA.user);
