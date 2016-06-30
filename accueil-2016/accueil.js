@@ -228,7 +228,7 @@ function withInfo() {
     document.location.hash = '';
     setSearchWords(this.value);
     var nbApps = displayLinks();
-    if (this.value.length > 2) server_log("id=" + encodeURIComponent(pE.DATA.user) + "&results=" + nbApps + "&search=" + encodeURIComponent(this.value));
+    if (this.value.length > 2) server_log("user=" + encodeURIComponent(pE.DATA.user) + "&results=" + nbApps + "&search=" + encodeURIComponent(this.value));
   };
     
   latestTopApps = sessionStorageGet("latestTopApps:" + pE.DATA.user);
