@@ -162,6 +162,7 @@ function displayLinks() {
       if (done[appId]) return;
       done[appId] = true;
       var app = pE.validApps[appId];
+      if (app && app.tags[0] === "__hidden__") return;
       //if (!app) console.log("not found " + appId);
       if (app && matches_search(app)) l.push(computeLink(app));
     });
