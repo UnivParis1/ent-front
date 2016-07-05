@@ -244,7 +244,7 @@ function addTags() {
     h.simpleEach(pE.DATA.layout.folders, function (tab) {
         h.simpleEach(tab.portlets, function (app) {
             if (!app.tags) app.tags = [];
-            app.tags.push(tab.title);
+            app.tags.unshift(tab.title);
         });
         if (tab.title !== 'Accueil' && tab.title !== 'Intranet' && tab.title !== 'Assistance'  && tab.title !== 'Administrateurs') tags.push(tab.title);
     });    
