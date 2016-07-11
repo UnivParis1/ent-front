@@ -251,7 +251,8 @@ function addTags() {
             if (!app.tags) app.tags = [];
             app.tags.unshift(tab.title);
         });
-        if (tab.title !== 'Accueil' && tab.title !== 'Intranet' && tab.title !== 'Assistance'  && tab.title !== 'Administrateurs') tags.push(tab.title);
+        if (tab.title !== 'Accueil' && tab.title !== 'Intranet' && tab.title !== 'Assistance'  && tab.title !== 'Administrateurs' && tab.title !== '__hidden__')
+            tags.push(tab.title);
     });    
 }
 
