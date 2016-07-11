@@ -13,7 +13,7 @@ if (window.parent != window) {
 
 setThemeCookie('theme-paris1-2016');
 
-window.bandeau_ENT = { current: "caccueil", no_titlebar: true, delegateAuth: true };
+window.bandeau_ENT = { currentAppIds: [ "accueil-2016", "caccueil" ], no_titlebar: true, delegateAuth: true };
 
 var pE, h, latestTopApps, tags;
 var searchWords = [];
@@ -219,6 +219,10 @@ function withInfo() {
   // remove splash screen
   document.getElementById("loading").className = "hidden";
 
+  if (!pE.validApps.caccueil) {
+      h.simpleQuerySelector("#vers-ancien-ent").innerHTML = '';
+  }
+    
   h.simpleQuerySelector('#pE-header .pE-title-ent').innerHTML = '';
   h.simpleQuerySelector('#pE-header .pE-title-app-long').innerHTML = 'Environnement numérique de travail (ENT)';
   h.simpleQuerySelector('#pE-header .pE-title-app-short').innerHTML = 'ENT';

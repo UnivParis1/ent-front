@@ -245,7 +245,7 @@ padding-right: 1.5em;
 }
 
 
-#vers-ancien-ent {
+#liens-a-droite {
     position: fixed;
     top: 47vh;
     right: -8.3em;
@@ -253,19 +253,19 @@ padding-right: 1.5em;
 }
 
 @media screen and (min-width: 1350px) {
-    #vers-ancien-ent {
+    #liens-a-droite {
         right: 0;
     }
 }
 
-#vers-ancien-ent:hover {
+#liens-a-droite:hover {
     right: 0;
 }
 
-#vers-ancien-ent > div {
+#liens-a-droite > div {
     padding: 0.2em 0;
 }
-#vers-ancien-ent > div > div {
+#liens-a-droite > div > div {
     box-shadow: 0 0 1em white;
     background: #00326E;
     padding: 1em;
@@ -273,11 +273,11 @@ padding-right: 1.5em;
     padding: 0.5em 0.3em 0.5em 1em;
     border-left: 3px solid #C89108;
 }
-#vers-ancien-ent a {
+#liens-a-droite a {
     color: white;
     text-decoration: none;
 }
-#vers-ancien-ent img {
+#liens-a-droite img {
     height: 1.1em;
     vertical-align: middle;
     padding-right: 0.3em;
