@@ -95,7 +95,7 @@ window.bandeau_ENT.onload = function (pE) {
    // force menu open, even if mobile
    document.getElementById('bandeau_ENT_Inner').className = 'menuOpen';
 
-   if (!pE.validApps.caccueil) {
+   if (!pE.validApps.caccueil && pE.validApps['accueil-2016']) {
      // force new accueil
      document.location = 'https://ent-test.univ-paris1.fr/accueil-2016/';
    }
