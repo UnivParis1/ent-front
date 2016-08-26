@@ -17,7 +17,7 @@ window.bandeau_ENT = { currentAppIds: [ "accueil-2016", "caccueil" ], no_titleba
 
 var pE, h, latestTopApps, tags;
 var searchWords = [];
-var searchAnyWords;
+var rawSearch, searchAnyWords;
 var displayedApps;
 var inProgress;
 
@@ -115,7 +115,7 @@ function formatAppField(s) {
 function computeLink(app) {
   var url = app.url;
   var description = app.description || app.title;
-  var a = "<a title='" + h.escapeQuotes(description) + "' href='" + url + "'>" +
+  var a = "<a title='" + h.escapeQuotes(description) + "' href='" + url + "' data-fname='" + app.fname + "'>" +
            "<span class='title'>" +
              "<img src='" + pE.CONF.prolongationENT_url + "/" + pE.CONF.theme + "/icon/" + simplifyFname(app.fname) + ".svg' onerror='this.style.display=\"none\"' >" +
              "<span class='title-text'>" + formatAppField(app.text || app.title) + "</span>" +
@@ -150,6 +150,7 @@ function matches_search(app) {
 }
 
 function setSearchWords(toMatch) {
+    rawSearch = toMatch;
     toMatch = asciifie(toMatch);
     var words = h.simpleFilter(toMatch.split(/\s+/), function (e) { return e !== '' });
     searchWords = h.simpleMap(words, function (word) { return new RegExp(word, "i"); });
@@ -251,6 +252,15 @@ function withInfo() {
           document.location = displayedApps[0].url;
       }
   };
+
+  h.simpleQuerySelector(".liste-service").onmousedown = function (event) {
+      var elt = h.eltClosest && h.eltClosest(event.target, "a[data-fname]");
+      var fname = elt && elt.getAttribute('data-fname');
+      if (fname) {
+          var index = 1 + h.simpleMap(displayedApps, function (e) { return e.fname }).indexOf(fname);
+          server_log({ user: pE.DATA.user, search: rawSearch, fname: fname, index: index });
+      }
+  };    
     
   latestTopApps = sessionStorageGet("latestTopApps:" + pE.DATA.user);
   if (latestTopApps) {
