@@ -237,6 +237,13 @@ function withInfo() {
     displayLinks();
     if (this.value.length > 2) server_log("user=" + encodeURIComponent(pE.DATA.user) + "&results=" + displayedApps.length + "&search=" + encodeURIComponent(this.value));
   };
+
+  var search_form = h.simpleQuerySelector('.search form');
+  search_form.onsubmit = function () {
+      if (displayedApps && displayedApps.length === 1) {
+          document.location = displayedApps[0].url;
+      }
+  };
     
   latestTopApps = sessionStorageGet("latestTopApps:" + pE.DATA.user);
   if (latestTopApps) {
