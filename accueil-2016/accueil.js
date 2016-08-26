@@ -258,7 +258,7 @@ function withInfo() {
       var fname = elt && elt.getAttribute('data-fname');
       if (fname) {
           var index = 1 + h.simpleMap(displayedApps, function (e) { return e.fname }).indexOf(fname);
-          server_log({ user: pE.DATA.user, search: rawSearch, fname: fname, index: index });
+          server_log({ user: pE.DATA.user, search: rawSearch || '', fname: fname, index: index });
       }
   };    
     
