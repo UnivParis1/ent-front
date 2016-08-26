@@ -76,11 +76,18 @@ function raw_xhr(url) {
     req.send(null);
 }
 var timeoutID;
-function server_log(msg) {
+function server_log_async(params) {
     if (timeoutID) window.clearTimeout(timeoutID);
     timeoutID = setTimeout(function () {
-        raw_xhr("log?" + msg);
+        server_log(params);
     }, 750);
+}
+function server_log(params) {
+    var l = [];
+    h.simpleEachObject(params, function (k, v) {
+        l.push(k + "=" + encodeURIComponent(v));
+    });
+    raw_xhr("log?" + l.join("&"));
 }
 
 
@@ -235,7 +242,7 @@ function withInfo() {
     document.location.hash = '';
     setSearchWords(this.value);
     displayLinks();
-    if (this.value.length > 2) server_log("user=" + encodeURIComponent(pE.DATA.user) + "&results=" + displayedApps.length + "&search=" + encodeURIComponent(this.value));
+    if (this.value.length > 2) server_log_async({ user: pE.DATA.user, results: displayedApps.length, search: rawSearch });
   };
 
   var search_form = h.simpleQuerySelector('.search form');
