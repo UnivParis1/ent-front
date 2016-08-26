@@ -18,6 +18,7 @@ window.bandeau_ENT = { currentAppIds: [ "accueil-2016", "caccueil" ], no_titleba
 var pE, h, latestTopApps, tags;
 var searchWords = [];
 var searchAnyWords;
+var displayedApps;
 var inProgress;
 
 function simpleEvery(a, fn) {
@@ -156,7 +157,7 @@ function displayLinks() {
         return "<a href='#" + tag + "' class='" + className + "'>" + tag + "</a>";
   }).join(' ');
     
-  function computeLinks(appIds) {    
+  function matchingApps(appIds) {
     var l = [];
     h.simpleEach(appIds, function (appId) {
       if (done[appId]) return;
@@ -164,20 +165,21 @@ function displayLinks() {
       var app = pE.validApps[appId];
       if (app && app.tags[0] === "__hidden__") return;
       //if (!app) console.log("not found " + appId);
-      if (app && matches_search(app)) l.push(computeLink(app));
+      if (app && matches_search(app)) l.push(app);
     });
     return l;
   }
-    function block(links) {
+    function block(apps) {
+        var links = h.simpleMap(apps, computeLink);
         return "<ul>" + links.join('') + "<li class='padding'></li><li class='padding'></li><li class='padding'></li><li class='padding'></li><li class='padding'></li>" + "</ul>";
     }
 
-    var l = computeLinks((latestTopApps ? normalizeAppIds(latestTopApps) : []).concat(Object.keys(pE.validApps)));
+    var l = matchingApps((latestTopApps ? normalizeAppIds(latestTopApps) : []).concat(Object.keys(pE.validApps)));
     var nbFirst = 3*4;
     var html = block(l.slice(0, nbFirst)) +
         (l.length > nbFirst ? block(l.slice(nbFirst)) : '');
   h.simpleQuerySelector(".liste-service").innerHTML = html;   
-    return l.length;
+  displayedApps = l;
 };
 
 window.onLoadTopApps = function (DATA) {
@@ -232,8 +234,8 @@ function withInfo() {
   search_input.oninput = function () {
     document.location.hash = '';
     setSearchWords(this.value);
-    var nbApps = displayLinks();
-    if (this.value.length > 2) server_log("user=" + encodeURIComponent(pE.DATA.user) + "&results=" + nbApps + "&search=" + encodeURIComponent(this.value));
+    displayLinks();
+    if (this.value.length > 2) server_log("user=" + encodeURIComponent(pE.DATA.user) + "&results=" + displayedApps.length + "&search=" + encodeURIComponent(this.value));
   };
     
   latestTopApps = sessionStorageGet("latestTopApps:" + pE.DATA.user);
