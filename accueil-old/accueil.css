@@ -1,0 +1,108 @@
+.ent-accueil { background-color: #fff; }
+
+.ent-accueil #globalcontainer {
+	margin: auto;
+	max-width: 1054px;
+	}
+
+.ent-accueil #contenu-gauche { 
+	position: relative;
+	float: left;
+	width: 476px !important;
+	display: block !important;
+	padding-top: 0px;
+	}
+
+.ent-accueil #contenu-droite { 
+	display: block !important;
+	position: relative;
+	float: right;
+	max-width: 541px !important;
+	
+	border-left: 1px solid #005bc3;
+	padding-left : 10px !important;
+	padding-top: 101px;
+	background: url("images/services-en-ligne-pers2015.png") no-repeat left top;
+	}
+.liste-service img {
+	float: left;
+    margin: 5px 0 0;
+    padding: 0 1em 0 0;
+    border: 0 none;
+}
+.liste-service ul{
+	font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-weight: normal;
+    display: inline-block;
+    list-style: none outside none;
+    Xmargin: 0 0 0 15px;
+    padding: 0;
+    width: 100%;
+}
+.liste-service li {
+	display: inline;
+    float: left;
+    line-height: 1.4;
+    margin: 11px 0 0.2em 15px;
+    position: relative;
+    height: 3.4em;
+    width: 255px;
+}
+
+.liste-service li.break {
+    clear: left;
+}
+.liste-service li a {
+	font-weight: bold;
+    line-height: 22px;
+    color: #2e5693;
+    text-decoration: none;
+    font-size: 12px;
+}
+.liste-service li a:hover {
+	color: #8d8767 !important;
+}
+.liste-service li a:visited {
+	color: #2e5693;
+}
+.liste-service p {
+	font-size: 0.75em;
+    color: #444444;
+    margin: 0 2em 0 3.6em;
+}
+
+
+
+.if-app-accueil-bis,
+.if-kind-etu, .if-kind-pers, .if-kind-ens, .if-kind-biatss,
+.liste-service li.if-kind-etu, .liste-service li.if-kind-pers, .liste-service li.if-kind-ens, .liste-service li.if-kind-biatss {
+    display: none;
+}
+
+.app-accueil-bis div.if-app-accueil-bis,
+.kind-etu div.if-kind-etu, 
+.kind-ens div.if-kind-ens, 
+.kind-biatss div.if-kind-biatss, 
+.kind-pers div.if-kind-pers {
+    display: block;
+}
+
+.kind-etu .liste-service li.if-kind-etu, 
+.kind-ens .liste-service li.if-kind-ens, 
+.kind-biatss .liste-service li.if-kind-biatss, 
+.kind-pers .liste-service li.if-kind-pers {
+    display: inline;
+}
+
+.if-not-mobile {
+    display: none;
+}
+
+@media screen and (min-width: 800px) and (min-device-width: 800px) {
+    .if-mobile {
+        display: none;
+    }
+    .if-not-mobile {
+        display: block;
+    }
+}

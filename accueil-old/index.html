@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#00326E">
+  <title>Environnement de Travail Paris 1 : Accueil</title>
+
+  <link rel="stylesheet" href="accueil.css" type="text/css">
+</head>
+<body class="ent-accueil">
+
+<div id="globalcontainer">
+
+<script type="text/javascript">
+
+ var THEME_COOKIE_NAME = "ProlongationENT_theme";
+
+ function getCookie(name) {
+    var m = document.cookie.match(new RegExp(name + '=([^;]+)'));
+    return m && m[1];
+}
+ 
+ function setThemeCookie(theme) {
+   document.cookie = THEME_COOKIE_NAME + "=" + theme + ";domain=.univ-paris1.fr;path=/" + (theme ? '' : ";expires=Thu, 01 Jan 1970 00:00:01 GMT;");
+   document.location.reload();
+ }    
+
+ if (getCookie(THEME_COOKIE_NAME) === 'theme-paris1-2016') {
+   document.location = 'https://ent-test.univ-paris1.fr/accueil-2016/';
+ }
+     
+ window.bandeau_ENT = { current: "caccueil", delegateAuth: true, no_titlebar: true };
+     
+ function simpleEach(a, fn) {
+    var len = a.length;
+    for(var i = 0; i < len; i++) {
+	fn(a[i], i, a);
+    }
+ }
+
+ function simpleMap(a, fn) {
+    var r = [];
+    var len = a.length;
+    for(var i = 0; i < len; i++) {
+	r.push(fn(a[i]));
+    }
+    return r;
+ }
+
+ function getValidApps(DATA) {
+    if (DATA.apps) return Object.keys(DATA.apps);
+    var l = [];
+    simpleEach(DATA.layout.folders, function (tab) {
+	l.push.apply(l, tab.portlets);
+    });
+    return simpleMap(l, function (e) { return e.fname });
+ }
+
+ function setClasses(kinds, apps) {
+   var classes1 = simpleMap(kinds, function (c) { return "kind-" + c ; });
+   var classes2 = simpleMap(apps, function (a) { return "app-" + a.toLowerCase() ; });
+   var classesFlat = classes1.join(' ') + ' ' + classes2.join(' ');
+   //console.log(classesFlat);
+   document.getElementById("globalcontainer").className = classesFlat;
+ }
+
+ function affiliations2classes(affiliations) {
+   var toFrench = { "teacher": ["pers","ens"],
+		    "staff": ["pers","biatss"],
+		    "student": ["etu"],
+		    "emeritus": ["pers"],
+		    "researcher": ["pers"],
+		    "emeritus": ["pers"] };
+
+   var classes = [];
+   simpleEach(affiliations, function (affiliation) {
+     classes = classes.concat(toFrench[affiliation] || []);
+   });
+   return classes;
+ }
+
+function withInfo(DATA) {
+   // cool, we logged in. now we can clean url
+   if (document.location.hash) document.location.hash = '';
+
+   // remove splash screen
+   document.getElementById("loading").className = "hidden";
+   
+   var userAttrs = DATA.userAttrs;
+   if (userAttrs && userAttrs.eduPersonAffiliation)
+     setClasses(affiliations2classes(userAttrs.eduPersonAffiliation), getValidApps(DATA));
+}
+window.bandeau_ENT.onload = function (pE) {
+   // force menu open, even if mobile
+   document.getElementById('bandeau_ENT_Inner').className = 'menuOpen';
+
+   if (!pE.validApps.caccueil && pE.validApps['accueil-2016']) {
+     // force new accueil
+     document.location = 'https://ent-test.univ-paris1.fr/accueil-2016/';
+   }
+   
+   withInfo(pE.DATA, true);
+};
+</script>
+
+<link href="../common/loading.css" type="text/css" rel="stylesheet">
+<div id="loading"> <div><img></div> </div>
+
+<script src='../common/static-ProlongationENT.js'></script>
+
+<script>
+if (window.parent != window) {
+    document.write("<script" + " src='https://esup-test.univ-paris1.fr/ProlongationENT/layout?callback=withInfo'><" + "/script>");
+}
+</script>
+
+
+<div class="hide-if-iframe">
+<div class="if-app-accueil-bis">
+  <a href="https://idp.univ-paris1.fr/shibboleth-idp/SSO?shire=https%3A%2F%2Fbisintra.univ-paris1.fr%2FShibboleth.sso%2FSAML%2FPOST&target=https%3A%2F%2Fbisintra.univ-paris1.fr&providerId=https%3A%2F%2Fbisintra.univ-paris1.fr" target="_parent">
+    <img src="images/acces-ibis.png" border="0" alt="Intranet BIS" title="Accès à l'Intranet de la BIS" />
+  </a>
+  <p style="height: 1em"/>
+</div>
+</div>
+
+<div class="if-not-mobile">
+    <div id="contenu-gauche">
+      <img src="images/bienvenue2015.png" alt="" />
+      <br />
+      <div class="if-kind-pers">
+	<a href="https://ent.univ-paris1.fr/intranet/" target="_parent"><img src="images/intranet2015.png" border="0" alt="Intranet" title="Intranet" /></a>
+	<br />
+      </div>
+      <div class="if-kind-etu">
+	<a href="https://www.univ-paris1.fr/ent/intranet/" target="_parent"><img src="images/intranet2015.png" border="0" alt="Intranet" title="Intranet" /></a>
+	<br />
+      </div>
+      <a href="http://search-site.univ-paris1.fr/" target="_blank"><img src="images/recherche2015.png" border="0" alt="Moteur de recherche" title="Moteur de recherche" /></a>      
+    </div>
+
+		
+    <div id="contenu-droite">
+      <div class="liste-service">
+        <ul>
+
+<li class="if-kind-ens">
+  <a href="https://ent.univ-paris1.fr/epi-ens" target="_blank">
+    <img src="images/epi.png" border="0" alt="EPI" title="EPI - Espaces p&eacute;dagogiques interactifs" />
+    Espace p&eacute;dagogiques interactifs</a>
+  <p>compl&eacute;ments de cours et formation en ligne</p>
+</li>
+
+<li class="if-kind-etu">
+  <a href="https://ent.univ-paris1.fr/epi" target="_blank">
+    <img src="images/epi.png" border="0" alt="EPI" title="EPI - Espaces p&eacute;dagogiques interactifs" />
+    Espace p&eacute;dagogiques interactifs</a>
+  <p>compl&eacute;ments de cours et formation en ligne</p>
+</li>
+
+<li>
+  <a href="https://ent.univ-paris1.fr/annuaire-pers" target="_blank">
+    <img src="images/icone-annuaire-32.png" border="0" alt="Annuaire" title="Annuaire de Paris 1" />
+    Annuaire</a>
+  <p>rechercher des personnels, des étudiants...</p>
+</li>
+
+<li class="if-kind-pers">
+  <a href="https://cours.univ-paris1.fr/mod/page/view.php?id=2875" target="_parent">
+    <img src="images/formation.png" border="0" alt="Formations des personnels de Paris 1" title="Formations des personnels de Paris 1" />
+    Formations des personnels</a>
+  <p>les espaces de formation des personnels</p>
+</li>
+
+<li class="if-kind-etu if-kind-pers" >
+  <a href="https://courrier.univ-paris1.fr/" target="_blank">
+    <img src="images/webmail.png" border="0" alt="Webmail" title="Webmail de Paris 1" />
+    Webmail</a>
+  <p>votre messagerie en ligne</p>
+</li>
+
+<li class="if-kind-etu" >
+  <a href="https://ent.univ-paris1.fr/resultat" target="_parent">
+    <img src="images/icone-cartable.png" border="0" alt="Mon dossier &eacute;tudiant" title="Mon dossier &eacute;tudiant" />
+    Dossier &eacute;tudiant</a>
+  <p>consultez vos notes, le calendrier des examents, etc</p>
+</li>
+
+<li class="if-kind-pers">
+  <a href="https://ecards.univ-paris1.fr/" target="_parent">
+    <img src="images/ecard.png" border="0" alt="ecard" title="Pour fabriquer vos cartes de visite en ligne" />
+    Ecards</a>
+  <p>pour fabriquer vos cartes de visite et de correspondance</p>
+</li>
+
+<li class="if-kind-etu if-kind-pers" >
+  <a href="https://ent.univ-paris1.fr/catalogue-scd" target="_parent">
+    <img src="images/catalogue.png" border="0" alt="catalogue" title="Catalogue des biblioth&egrave;ques en ligne" />
+    Catalogue</a>
+  <p>ouvrages, revues, th&egrave;ses et m&eacute;moires</p>
+</li>
+
+<li class="if-kind-etu if-kind-pers" >
+  <a href="https://ent.univ-paris1.fr/domino" target="_parent">
+    <img src="images/domino.png" border="0" alt="domino" title="Domino - Documentation et ressources en ligne" />
+    Domino</a>
+  <p>documentation et ressource &eacute;lectronique</p>
+</li>
+
+<li class="if-kind-etu" >
+  <a href="http://reseaupro.univ-paris1.fr" target="_blank">
+    <img src="images/reseaupro.png" border="0" alt="Reseaupro" title="Reseaupro - offres de stages et d'emploi" />
+    Reseaupro</a>
+  <p>vos offres de stages et d'emploi</p>
+</li>
+
+<li class="if-kind-pers">
+  <a href="http://reseaupro.univ-paris1.fr" target="_blank">
+    <img src="images/reseaupro.png" border="0" alt="Reseaupro" title="Reseaupro - offres de stages et d'emploi" />
+    Reseaupro</a>
+  <p>d&eacute;posez vos offres de stages et d'emploi pour vos &eacute;tudiants</p>
+</li>
+
+<li class="if-kind-etu if-kind-pers" >
+  <a href="http://phototheque.univ-paris1.fr/app/sso_login.sk?site=paris1&redir_quiet=1&requrl=http://phototheque.univ-paris1.fr/app/photopro.sk/paris1/doclist" target="_blank">
+    <img src="images/phototheque.png" border="0" alt="Phototh&egrave;que" title="Phototh&egrave;que de Paris 1" />
+    Phototh&egrave;que</a>
+  <p>faites votre moisson d'images</p>
+</li>
+
+<li>
+  <a href="https://wifi.univ-paris1.fr/" target="_blank">
+    <img src="images/wifi.png" border="0" alt="wifi" title="Tout savoir sur le wifi &agrave; Paris 1" />
+    WIFI</a>
+  <p>o&ugrave; et comment s'y connecter</p>
+</li>
+
+<li class="if-kind-pers">
+  <a href="https://voeux.univ-paris1.fr" target="_blank">
+    <img src="images/carte.png" border="0" alt="Carte de voeux" title="Carte de voeux" />
+    Carte de voeux</a>
+  <p>envoyez des cartes de voeux &eacute;lectroniques</p>
+</li>
+
+	</ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="if-mobile" style='padding: 0.5em 0 0 1em' >
+  <img src="images/bienvenue-mobile.png" alt=""/>
+  <p>
+    Cliquez sur « ENT » en haut à droite pour afficher les outils mis à votre disposition.
+</div>
+
+</body>
+</html>

@@ -1,108 +1,284 @@
-.ent-accueil { background-color: #fff; }
-
-.ent-accueil #globalcontainer {
-	margin: auto;
-	max-width: 1054px;
-	}
-
-.ent-accueil #contenu-gauche { 
-	position: relative;
-	float: left;
-	width: 476px !important;
-	display: block !important;
-	padding-top: 0px;
-	}
-
-.ent-accueil #contenu-droite { 
-	display: block !important;
-	position: relative;
-	float: right;
-	max-width: 541px !important;
-	
-	border-left: 1px solid #005bc3;
-	padding-left : 10px !important;
-	padding-top: 101px;
-	background: url("images/services-en-ligne-pers2015.png") no-repeat left top;
-	}
-.liste-service img {
-	float: left;
-    margin: 5px 0 0;
-    padding: 0 1em 0 0;
-    border: 0 none;
+@font-face {
+font-family: 'Brandon Grotesque';
+src: url('//www.univ-paris1.fr/fileadmin/templates/v2/font/brandon_grotesque.eot?') format('eot'),
+     url('//www.univ-paris1.fr/fileadmin/templates/v2/font/brandon_grotesque.otf') format('truetype'),
+     url('//www.univ-paris1.fr/fileadmin/templates/v2/font/brandon_grotesque.woff') format('woff'),
+     url('//www.univ-paris1.fr/fileadmin/templates/v2/font/brandon_grotesque.svg#BrandonGrotesque') format('svg');
+font-weight: normal;
+font-style: normal;
 }
-.liste-service ul{
-	font-family: Verdana,Arial,Helvetica,sans-serif;
-    font-weight: normal;
+
+
+html {
+    font-family: Arial,Helvetica,sans-serif;
+}
+
+.subtitle {
+    color: #00326E;
+    position: absolute;
+    top: 58px;
+    font-size: 15px;
+    left: 53px;
+}
+
+.search {
+    text-align: center;
+    margin: 4em 0 0.5em;
+}
+
+.search > form {
+    display: inline-block;   
+}
+
+.searchLoupe {
+    vertical-align: middle;
+    height: 32.5px;
+    opacity: 0.5;
+    Xcolor: #888;
+    Xfont-size: 180%;
+    float: right;
+    margin-left: -40px;
+}
+
+.search input {
     display: inline-block;
+    height: 31px;
+    width: 25em;
+    padding: 0 30px 0 1em;
+
+    border: 1px solid #aaa;
+    border-radius : 5px;
+    Xbox-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+
+    font-size: 14px;
+    font-family: Arial, sans-serif;    
+}
+
+.search input:focus {
+  outline: 0;
+  border-color: #C89108;
+}
+
+::-moz-placeholder {
+  color: #aaa;
+  opacity: 1;
+}
+:-ms-input-placeholder {
+  color: #aaa;
+}
+::-webkit-input-placeholder {
+  color: #aaa;
+}
+
+
+.liste-tags {
+    position: relative;
+}
+.liste-tags > div {
+    overflow-x: auto;
+}
+.liste-tags {
+    text-align: center;
+    margin-top: 2.5em;
+    margin-bottom: 1.5em;    
+    margin-left: 2em;
+    font-size: 9px;
+
+    text-transform: uppercase;
+    font-family: "Brandon Grotesque", Arial, sans-serif;
+
+    white-space: nowrap;
+}
+
+.liste-tags::-webkit-scrollbar {
+    display: none;
+}
+
+.blur-right {
+    background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1));
+    position: absolute;
+    pointer-events: none;
+    right: 0;
+    top: 0;
+    height: 2.5em;
+    width: 40px;
+    z-index: 2;
+}
+
+.liste-tags a {
+    text-decoration: none;
+    color: #777;
+    padding: 0.2rem 1em;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.liste-tags a.selected {
+    color: #C89108;
+    border-bottom: 3px solid #C89108;
+}
+
+XX.search a.searchButton {
+background-color: #fff;
+background-image: url(https://ent.univ-paris1.fr/ProlongationENT/theme-paris1/Loupe.svg);
+background-repeat: no-repeat;
+background-size: 15px auto;
+background-position: 0 12px;
+padding-right: 1.5em;
+}
+
+.liste-service {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.liste-service ul{
+    display: inline-block;
+    Xflex-flow: row wrap;
     list-style: none outside none;
-    Xmargin: 0 0 0 15px;
     padding: 0;
-    width: 100%;
+    Xjustify-content: space-around;
+    text-align: center;
 }
 .liste-service li {
-	display: inline;
-    float: left;
-    line-height: 1.4;
-    margin: 11px 0 0.2em 15px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 11px 0.7em 1em;
     position: relative;
-    height: 3.4em;
-    width: 255px;
+    font-size: 13px;
+    height: 8em; /*4.5em;*/
+    width: 16.5em;
+    Xflex: 0 0 16.5em;
+    text-align: left;
 }
 
-.liste-service li.break {
-    clear: left;
-}
-.liste-service li a {
-	font-weight: bold;
-    line-height: 22px;
-    color: #2e5693;
-    text-decoration: none;
-    font-size: 12px;
-}
-.liste-service li a:hover {
-	color: #8d8767 !important;
-}
-.liste-service li a:visited {
-	color: #2e5693;
-}
-.liste-service p {
-	font-size: 0.75em;
-    color: #444444;
-    margin: 0 2em 0 3.6em;
-}
-
-
-
-.if-app-accueil-bis,
-.if-kind-etu, .if-kind-pers, .if-kind-ens, .if-kind-biatss,
-.liste-service li.if-kind-etu, .liste-service li.if-kind-pers, .liste-service li.if-kind-ens, .liste-service li.if-kind-biatss {
-    display: none;
-}
-
-.app-accueil-bis div.if-app-accueil-bis,
-.kind-etu div.if-kind-etu, 
-.kind-ens div.if-kind-ens, 
-.kind-biatss div.if-kind-biatss, 
-.kind-pers div.if-kind-pers {
-    display: block;
-}
-
-.kind-etu .liste-service li.if-kind-etu, 
-.kind-ens .liste-service li.if-kind-ens, 
-.kind-biatss .liste-service li.if-kind-biatss, 
-.kind-pers .liste-service li.if-kind-pers {
-    display: inline;
-}
-
-.if-not-mobile {
-    display: none;
-}
-
-@media screen and (min-width: 800px) and (min-device-width: 800px) {
-    .if-mobile {
+@media screen and (max-width: 700px) {
+    .liste-service li {
+        font-size: 10px;
+    }
+    .subtitle {
         display: none;
     }
-    .if-not-mobile {
-        display: block;
+    .search {
+        margin: 0;
     }
+    .search form {
+        width: 90%;
+    }
+    .search input {
+        width: 100%;
+        box-sizing: border-box;
+
+    }
+    .liste-tags {
+        margin-bottom: 0;
+        font-size: 7px;
+    }
+    
+}
+
+@media screen and (max-width: 360px) {
+    .liste-service li {
+        margin-left: 0.3em;
+        margin-right: 0.3em;
+        Xflex: 0 0 100%;
+        Xwidth: 100%;
+        width: 15em;
+    }
+}
+
+.liste-service li.padding {
+    height: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.liste-service li a {
+    text-decoration: none;
+}
+
+.liste-service .title .title-text {
+    color: #2e5693;
+    font-size: 125%;
+    vertical-align: middle;
+    display: table-cell;
+    height: 3em;
+}
+.liste-service .title {
+    box-sizing: border-box;
+    display: block;
+    background: #d5dceb;
+    padding-left: 0.9em;
+    
+    -moz-border-radius : 7px 7px 0 0;
+    border-radius : 7px 7px 0 0;
+    -webkit-border-top-left-radius : 7px;
+    -webkit-border-top-right-radius : 7px;
+}
+.liste-service .description {
+    color: #666;
+    padding: 1em 1em 0.2em;
+    display: inline-block;
+    font-size: 90%;
+    border-left: 2px solid #d5dceb;
+    height: 2.8em;
+}
+.liste-service .title a:hover {
+    color: #8d8767 !important;
+}
+.liste-service .title a:visited {
+    color: #2e5693;
+}
+
+.liste-service .title img {
+    float: right;   
+    width: 3.23em;
+    height: 3.23em;
+    opacity: 0.2;
+    margin: 0.31em 0.38em 0 0;
+    display: none;
+}
+
+
+#liens-a-droite {
+    position: fixed;
+    top: 47vh;
+    right: -8.3em;
+    z-index: 1;
+}
+
+@media screen and (min-width: 1350px) {
+    #liens-a-droite {
+        right: 0;
+    }
+}
+
+#liens-a-droite:hover {
+    right: 0;
+}
+
+#liens-a-droite > div {
+    padding: 0.2em 0;
+}
+#liens-a-droite > div > div {
+    box-shadow: 0 0 1em white;
+    background: #00326E;
+    padding: 1em;
+    font-size: 12px;
+    padding: 0.5em 0.3em 0.5em 1em;
+    border-left: 3px solid #C89108;
+}
+#liens-a-droite a {
+    color: white;
+    text-decoration: none;
+}
+#liens-a-droite img {
+    height: 1.1em;
+    vertical-align: middle;
+    padding-right: 0.3em;
 }
