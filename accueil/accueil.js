@@ -240,6 +240,10 @@ function withInfo() {
   var search_input = h.simpleQuerySelector('.search input');
   if (search_input.value) setSearchWords(search_input.value);
   search_input.oninput = function () {
+    if (rawSearch === this.value) {
+      // unchanged, do nothing (IE11 placeholder bug workaround)
+      return;
+    }
     document.location.hash = '';
     setSearchWords(this.value);
     displayLinks();
