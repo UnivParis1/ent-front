@@ -295,5 +295,8 @@ window.bandeau_ENT.onload = function (pE_) {
   window.onhashchange = useHashParam;
 
   withInfo();
-  document.getElementById("pE-footer-inner-app").innerHTML = document.getElementById("enquete").innerHTML;
+    
+  h.onReady(function () {
+      document.getElementById("pE-footer-inner-app").innerHTML = document.getElementById("enquete").innerHTML;
+  });
 };
