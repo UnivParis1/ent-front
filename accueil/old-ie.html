@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#00326E">
+  <title>Environnement de Travail Paris 1 : Accueil</title>
+
+  <!--[if gte IE 9]>
+    <meta http-equiv="refresh" content="0;URL=/accueil/">
+  <![endif]-->
+</head>
+
+<body>
+  
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
+  
+  <div id="compat">
+    Votre navigateur est supporté, mais il faut désactiver le mode de compatibilité.
+  </div>
+  
+  <div id="really-old">
+    Votre navigateur n'est plus supporté.
+    Veuillez utiliser une version plus récente d'Internet Explorer ou Firefox, Chrome, Safari
+  </div>
+   
+  <script>
+    var m = navigator.userAgent.match(/Trident\/([0-9]+)/);
+    var tridentVersion = m && m[1];
+    var toHide = 'compat';
+    if (tridentVersion >= 5) {
+     // IE 9 in compat mode
+     toHide = 'really-old';
+    }
+    document.getElementById(toHide).className = 'hidden';
+  </script>
+
+</body>
