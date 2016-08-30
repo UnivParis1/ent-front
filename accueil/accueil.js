@@ -117,7 +117,6 @@ function computeLink(app) {
   var description = app.description || app.title;
   var a = "<a title='" + h.escapeQuotes(description) + "' href='" + url + "' data-fname='" + app.fname + "'>" +
            "<span class='title'>" +
-             "<img src='" + pE.CONF.prolongationENT_url + "/" + pE.CONF.theme + "/icon/" + simplifyFname(app.fname) + ".svg' onerror='this.style.display=\"none\"' >" +
              "<span class='title-text'>" + formatAppField(app.text || app.title) + "</span>" +
            "</span>" +
            "<span class='description'>" + formatAppField(description) + "</span>" +
