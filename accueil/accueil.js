@@ -159,7 +159,7 @@ function setSearchWords(toMatch) {
     toMatch = asciifie(toMatch);
 
     if (toMatch.length > 1) {
-        var words = toMatch.split(/\s+/);
+        var words = toMatch.split(/[^\w_@]+/);
         if (words[0] === '') words.shift();
         var lastWord = words.pop();
         words = removeStopWords(words);
