@@ -60,6 +60,26 @@ function removeStopWords(l) {
     return h.simpleFilter(l, function (w) { return !stopWordRegex.test(w); });
 }
 
+/* from "A Stemming Procedure And Stopword List For General French Corpora" 1999 Jacques Savoy */
+/* modification: always return a substring */
+function minimal_french_stemmer(w) {
+  var len = w.length;
+    
+  if (len < 5) {
+      // do nothing
+  } else if (w[len - 1] === 'x') {
+      len--;
+      if (w[len - 2] === 'a' && w[len - 1] === 'u') len--;
+  } else {
+      if (w[len - 1] === 's') len--;
+      if (w[len - 1] === 'r') len--;
+      if (w[len - 1] === 'e') len--;
+      if (w[len - 1] === 'e') len--; // for ée
+      if (w[len - 1] === w[len - 2]) len--;
+  }
+  return len < w.length ? w.slice(0, len) : w;
+}
+
 function tomorrow() {
     var d = new Date();
     d.setDate(d.getDate() + 1);
@@ -163,9 +183,10 @@ function setSearchWords(toMatch) {
         var lastWord = words.pop();
         words = removeStopWords(words);
         if (lastWord !== '') words.push(lastWord);
+        var stemmed_words = h.simpleMap(words, minimal_french_stemmer);
     
-        searchWords = h.simpleMap(words, function (word) { return new RegExp(word); });
-        searchAnyWords = new RegExp(words.join('|'), 'i');
+        searchWords = h.simpleMap(stemmed_words, function (word) { return new RegExp(word); });
+        searchAnyWords = new RegExp(words.concat(stemmed_words).join('|'), 'i');
     } else {
         searchWords = [];
         searchAnyWords = null;
