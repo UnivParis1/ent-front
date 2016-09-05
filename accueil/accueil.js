@@ -54,6 +54,12 @@ function asciifie(s) {
     return s;
 }
 
+var stopWordRegex = /^(de|la|le|l|a|les|et|des|d|en|du|un|une|est|dans|il|pour|au|que|qui)$/;
+
+function removeStopWords(l) {
+    return h.simpleFilter(l, function (w) { return !stopWordRegex.test(w); });
+}
+
 function tomorrow() {
     var d = new Date();
     d.setDate(d.getDate() + 1);
@@ -153,7 +159,12 @@ function setSearchWords(toMatch) {
     toMatch = asciifie(toMatch);
 
     if (toMatch.length > 1) {
-        var words = h.simpleFilter(toMatch.split(/\s+/), function (e) { return e !== '' });
+        var words = toMatch.split(/\s+/);
+        if (words[0] === '') words.shift();
+        var lastWord = words.pop();
+        words = removeStopWords(words);
+        if (lastWord !== '') words.push(lastWord);
+    
         searchWords = h.simpleMap(words, function (word) { return new RegExp(word, "i"); });
         searchAnyWords = new RegExp(words.join('|'), 'i');
     } else {
