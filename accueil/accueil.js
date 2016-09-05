@@ -151,16 +151,22 @@ function matches_search(app) {
 function setSearchWords(toMatch) {
     rawSearch = toMatch;
     toMatch = asciifie(toMatch);
-    var words = h.simpleFilter(toMatch.split(/\s+/), function (e) { return e !== '' });
-    searchWords = h.simpleMap(words, function (word) { return new RegExp(word, "i"); });
-    searchAnyWords = new RegExp(words.join('|'), 'i');
+
+    if (toMatch.length > 1) {
+        var words = h.simpleFilter(toMatch.split(/\s+/), function (e) { return e !== '' });
+        searchWords = h.simpleMap(words, function (word) { return new RegExp(word, "i"); });
+        searchAnyWords = new RegExp(words.join('|'), 'i');
+    } else {
+        searchWords = [];
+        searchAnyWords = null;
+    }
 }
 
 function displayLinks() {
   var done = { caccueil: true, 'accueil-2016': true };
 
   h.simpleQuerySelector("#liste-tags-inner").innerHTML = h.simpleMap(tags, function (tag) {
-      var className = asciifie(tag).match(searchWords.length ? searchAnyWords : 'Tous') ? 'selected' : '';
+      var className = asciifie(tag).match(searchAnyWords || 'Tous') ? 'selected' : '';
         return "<a href='#" + tag + "' class='" + className + "'>" + tag + "</a>";
   }).join(' ');
     
