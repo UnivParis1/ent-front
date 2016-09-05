@@ -141,7 +141,7 @@ function normalizeAppIds(appIds) {
 function cachedAppValues(app) {
     var r = app._allValues;
     if (!r) {
-        r = app._allValues = asciifie(objectValues(app).join(','));
+        r = app._allValues = asciifie(objectValues(app).join(',')).toLowerCase();
     }
     return r;
 }
@@ -156,16 +156,15 @@ function matches_search(app) {
 
 function setSearchWords(toMatch) {
     rawSearch = toMatch;
-    toMatch = asciifie(toMatch);
 
     if (toMatch.length > 1) {
-        var words = toMatch.split(/[^\w_@]+/);
+        var words = asciifie(toMatch).toLowerCase().split(/[^\w_@]+/);
         if (words[0] === '') words.shift();
         var lastWord = words.pop();
         words = removeStopWords(words);
         if (lastWord !== '') words.push(lastWord);
     
-        searchWords = h.simpleMap(words, function (word) { return new RegExp(word, "i"); });
+        searchWords = h.simpleMap(words, function (word) { return new RegExp(word); });
         searchAnyWords = new RegExp(words.join('|'), 'i');
     } else {
         searchWords = [];
