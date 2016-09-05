@@ -132,11 +132,19 @@ function normalizeAppIds(appIds) {
     });
 }
 
+function cachedAppValues(app) {
+    var r = app._allValues;
+    if (!r) {
+        r = app._allValues = asciifie(objectValues(app).join(','));
+    }
+    return r;
+}
+
 function matches_search(app) {
   if (searchWords.length === 0) return true;
-  app = asciifie(objectValues(app).join(','));
+  var allValues = cachedAppValues(app);
   return simpleEvery(searchWords, function (re) {
-    return app.match(re);
+    return allValues.match(re);
   });
 }
 
