@@ -186,7 +186,7 @@ function setSearchWords(toMatch) {
         var stemmed_words = h.simpleMap(words, minimal_french_stemmer);
     
         searchWords = h.simpleMap(stemmed_words, function (word) { return new RegExp(word); });
-        searchAnyWords = new RegExp(words.concat(stemmed_words).join('|'), 'i');
+        searchAnyWords = new RegExp(words.concat(stemmed_words).join('|'), 'gi');
     } else {
         searchWords = [];
         searchAnyWords = null;
