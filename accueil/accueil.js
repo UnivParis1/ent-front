@@ -29,14 +29,6 @@ function simpleEvery(a, fn) {
    return true;
 }
 
-function objectValues(a) {
-    var r = [];
-    for(var k in o) {
-        r.push(o[k]);
-    }
-    return r;
-}
-
 function objectValues(o) {
     return h.simpleMap(Object.keys(o), function (k) { return o[k]; });
 }
