@@ -1,19 +1,11 @@
 "use strict";
 
-var THEME_COOKIE_NAME = "ProlongationENT_theme";
-
-function setThemeCookie(theme) {
-  document.cookie = THEME_COOKIE_NAME + "=" + theme + ";domain=.univ-paris1.fr;path=/" + (theme ? '' : ";expires=Thu, 01 Jan 1970 00:00:01 GMT;");
-}
-
 if (window.parent != window) {
   // no iframe
   window.top.location.href = document.location;
 }
 
-setThemeCookie('theme-paris1-2016');
-
-window.bandeau_ENT = { currentAppIds: [ "accueil-2016", "caccueil" ], no_titlebar: true, delegateAuth: true };
+window.bandeau_ENT = { currentAppIds: [ "caccueil" ], no_titlebar: true, delegateAuth: true };
 
 var pE, h, latestTopApps, tags;
 var searchWords = [];
@@ -194,7 +186,7 @@ function setSearchWords(toMatch) {
 }
 
 function displayLinks() {
-  var done = { caccueil: true, 'accueil-2016': true };
+  var done = { caccueil: true };
 
   h.simpleQuerySelector("#liste-tags-inner").innerHTML = h.simpleMap(tags, function (tag) {
       var className = asciifie(tag).match(searchAnyWords || 'Tous') ? 'selected' : '';
