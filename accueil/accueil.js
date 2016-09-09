@@ -256,10 +256,6 @@ function useHashParam() {
 function withInfo() {
   // remove splash screen
   document.getElementById("loading").className = "hidden";
-
-  if (!pE.validApps.caccueil) {
-      h.simpleQuerySelector("#vers-ancien-ent").innerHTML = '';
-  }
     
   h.simpleQuerySelector('#pE-header .pE-title-ent').innerHTML = '';
   h.simpleQuerySelector('#pE-header .pE-title-app-long').innerHTML = 'Environnement numérique de travail (ENT)';
