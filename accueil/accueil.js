@@ -5,7 +5,17 @@ if (window.parent != window) {
   window.top.location.href = document.location;
 }
 
-window.bandeau_ENT = { currentAppIds: [ "caccueil" ], no_titlebar: true, delegateAuth: true };
+let pE_args = window.bandeau_ENT = { currentAppIds: [ "caccueil", "accueil-federation" ], no_titlebar: true };
+
+if (location.search && location.search.match(/federation/)) {
+    var host = document.location.host.replace(/^ent/, 'esup');
+    pE_args.layout_url = "https://" + host + "/federation/ProlongationENT/layout";
+    pE_args.onNotLogged = function () {
+        document.location = "https://" + host + "/Shibboleth.sso/Login?target=" + encodeURIComponent("/accueil/?federation");
+    };
+} else {
+    pE_args.delegateAuth = true;
+}
 
 var pE, h, latestTopApps, tags;
 var searchWords = [];
@@ -186,7 +196,7 @@ function setSearchWords(toMatch) {
 }
 
 function displayLinks() {
-  var done = { caccueil: true };
+  var done = { caccueil: true, 'accueil-federation': true };
 
   h.simpleQuerySelector("#liste-tags-inner").innerHTML = h.simpleMap(tags, function (tag) {
       var className = asciifie(tag).match(searchAnyWords || 'Tous') ? 'selected' : '';
