@@ -11,7 +11,7 @@
 <body>
 
   <script type="text/javascript">   
-   var idpIdMatch = location.search.match(/idpId=([^&]*)/);
+   var idpIdMatch = location.search.match(/idpId=([^&]+)/);
    if (idpIdMatch) {
       document.location = "https://cours.univ-paris1.fr/Shibboleth.sso/Login?target=https://cours.univ-paris1.fr/auth/shibboleth/index.php&entityID=" + idpIdMatch[1];
    }
