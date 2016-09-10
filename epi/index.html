@@ -11,6 +11,11 @@
 <body>
 
   <script type="text/javascript">   
+   var idpIdMatch = location.search.match(/idpId=([^&]*)/);
+   if (idpIdMatch) {
+      document.location = "https://cours.univ-paris1.fr/Shibboleth.sso/Login?target=https://cours.univ-paris1.fr/auth/shibboleth/index.php&entityID=" + idpIdMatch[1];
+   }
+    
    window.bandeau_ENT = { currentAppIds: ["moodle-epi",'esup-lecture-epi'], delegateAuth: true };
    window.bandeau_ENT.onload = function (pE) {
      if (pE.person && pE.person.id) {
