@@ -11,7 +11,7 @@ if (location.search && location.search.match(/federation/)) {
     var host = document.location.host.replace(/^ent/, 'esup');
     pE_args.layout_url = "https://" + host + "/federation/ProlongationENT/layout";
     pE_args.onNotLogged = function () {
-        var m = location.search.match(/idpId=([^&]*)/);
+        var m = location.search.match(/idpId=([^&]+)/);
         var idpParam = m ? "&entityID=" + m[1] : '';
         document.location = "https://" + host + "/Shibboleth.sso/Login?target=" + encodeURIComponent("/accueil/?federation") + idpParam;
     };
