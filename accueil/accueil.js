@@ -5,7 +5,7 @@ if (window.parent != window) {
   window.top.location.href = document.location;
 }
 
-let pE_args = window.bandeau_ENT = { currentAppIds: [ "caccueil", "accueil-federation" ], no_titlebar: true };
+var pE_args = window.bandeau_ENT = { currentAppIds: [ "caccueil", "accueil-federation" ], no_titlebar: true };
 
 if (location.search && location.search.match(/federation/)) {
     var host = document.location.host.replace(/^ent/, 'esup');
