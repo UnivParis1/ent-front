@@ -315,9 +315,9 @@ function addTags() {
     h.simpleEach(pE.DATA.layout.folders, function (tab) {
         h.simpleEach(tab.portlets, function (app) {
             if (!app.tags) app.tags = [];
-            app.tags.unshift(tab.title);
+            if (tab.title !== '') app.tags.unshift(tab.title);
         });
-        if (tab.title !== 'Accueil' && tab.title !== 'Intranet' && tab.title !== 'Assistance'  && tab.title !== 'Administrateurs' && tab.title !== '__hidden__')
+        if (!tab.title.match(/^(Accueil|Intranet|Assistance|Administrateurs|__hidden__|)$/))
             tags.push(tab.title);
     });    
 }
