@@ -246,7 +246,7 @@ var loadBandeauJs = function(params) {
    if (pE.wanted_uid)
        params.push("uid=" + encodeURIComponent(pE.wanted_uid));    
    params.push("callback=window.onLoadTopApps");
-   h.loadScript(pE.CONF.layout_url + (params.length ? "?" + params.join('&') : ''));
+   h.loadScript((pE_args.layout_url || pE.CONF.layout_url) + (params.length ? "?" + params.join('&') : ''));
    setTimeout(function () {
     window.onLoadTopApps();
    }, 1000);
