@@ -20,7 +20,7 @@ if (location.search && location.search.match(/federation/)) {
 }
 
 var pE, h, latestTopApps, tags;
-var searchWords = [];
+var searchWordsReg = [];
 var rawSearch, searchAnyWords;
 var displayedApps;
 var inProgress;
@@ -171,9 +171,9 @@ function cachedAppValues(app) {
 }
 
 function matches_search(app) {
-  if (searchWords.length === 0) return true;
+  if (searchWordsReg.length === 0) return true;
   var allValues = cachedAppValues(app);
-  return simpleEvery(searchWords, function (re) {
+  return simpleEvery(searchWordsReg, function (re) {
     return allValues.match(re);
   });
 }
@@ -189,10 +189,10 @@ function setSearchWords(toMatch) {
         if (lastWord !== '') words.push(lastWord);
         var stemmed_words = h.simpleMap(words, minimal_french_stemmer);
     
-        searchWords = h.simpleMap(stemmed_words, function (word) { return new RegExp(word); });
+        searchWordsReg = h.simpleMap(stemmed_words, function (word) { return new RegExp(word); });
         searchAnyWords = new RegExp(words.concat(stemmed_words).join('|'), 'gi');
     } else {
-        searchWords = [];
+        searchWordsReg = [];
         searchAnyWords = null;
     }
 }
