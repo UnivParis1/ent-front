@@ -19,9 +19,9 @@ if (location.search && location.search.match(/federation/)) {
     pE_args.delegateAuth = true;
 }
 
-var pE, h, latestTopApps, tags;
+var pE, h, latestTopApps, tags, tries;
 var searchWordsReg = [];
-var rawSearch, searchAnyWords;
+var rawSearch, searchAnyWords, searchWords;
 var displayedApps;
 var inProgress;
 
@@ -83,6 +83,54 @@ function minimal_french_stemmer(w) {
   }
   return len < w.length ? w.slice(0, len) : w;
 }
+
+function PseudoTrie() {}
+
+PseudoTrie.prototype.insert = function(word) {
+  var node = this;
+  for (var i = 0; i < word.length; i++) {
+    var c = word[i];
+    node = node[c] || (node[c] = new PseudoTrie())
+  }
+  node.word = word;
+};
+
+PseudoTrie.prototype._searchRecursive = function(c, word, prevRow, r, maxDist) {
+    var lastColumn = word.length;
+    var row = [prevRow[0] + 1];
+
+    for (var i = 1; i <= lastColumn; i++) {
+        var repl = word[i - 1] === c ? 0 : 1;
+        row[i] = Math.min(row[i - 1] + 1, prevRow[i] + 1, prevRow[i - 1] + repl);
+    }    
+
+    if (row[lastColumn] <= maxDist && this.word) {
+        r.push(this.word);
+    }
+
+    if (Math.min.apply(undefined, row) > maxDist) return; // give up
+
+    this._recurse(word, row, r, maxDist);
+}
+
+PseudoTrie.prototype._recurse = function (word, row, r, maxDist) {
+  for (var c in this) {
+    if (this.hasOwnProperty(c) && c.length === 1) {
+      this[c]._searchRecursive(c, word, row, r, maxDist);
+    }
+  }
+};
+
+PseudoTrie.prototype.search = function(word, maxDist) {
+  var row = [];
+  for (var i = 0; i <= word.length; i++) {
+    row[i] = i;
+  }
+
+  var r = [];
+  this._recurse(word, row, r, maxDist);
+  return r;
+};
 
 function tomorrow() {
     var d = new Date();
@@ -178,6 +226,54 @@ function matches_search(app) {
   });
 }
 
+function computeTries() {
+    tries = [];
+    var fields = ['shortTitle', 'title', 'description', 'tags'];
+    h.simpleEachObject(pE.validApps, function (appId, app) {
+        var trie = new PseudoTrie();
+        fields.forEach(function (field) {
+            var v = app[field];
+            if (v) {
+                if (typeof v !== "string") v = v.join(",");
+                removeStopWords(asciifie(v).toLowerCase().split(/[^\w_@]+/)).forEach(function (word) {
+                    trie.insert(word);
+                });
+            }
+        });
+        tries.push(trie);
+    });
+}
+function approxSearch() {
+    if (!tries) computeTries();
+    var approx = {};
+    var maxNb = 0;
+    h.simpleEach(tries, function (trie) {
+        var l = [];
+        var maxDistUsed = 0;
+        h.simpleEach(searchWords, function (w) {
+            if (w.length <= 3) return;
+            var max, maxDist = Math.min(w.length / 3, 4);
+            for (max = 0; max <= maxDist; max++) {
+                var r = trie.search(w, max);
+                if (r.length > 0) {
+                    var dist = minimal_french_stemmer(r[0]) === minimal_french_stemmer(w) ? 0 : max;
+                    maxDistUsed = Math.max(maxDistUsed, dist);
+                    l.push(r[0]);
+                    break;
+                }
+            }
+        });
+        if (l.length && maxDistUsed >= 1) {
+            if (l.length > maxNb) {
+                approx = {};
+                maxNb = l.length;
+            }
+            approx[l.join(" ")] = true;
+        }
+    });
+    return Object.keys(approx);
+}
+
 function setSearchWords(toMatch) {
     rawSearch = toMatch;
 
@@ -187,12 +283,13 @@ function setSearchWords(toMatch) {
         var lastWord = words.pop();
         words = removeStopWords(words);
         if (lastWord !== '') words.push(lastWord);
+        searchWords = words;
         var stemmed_words = h.simpleMap(words, minimal_french_stemmer);
     
         searchWordsReg = h.simpleMap(stemmed_words, function (word) { return new RegExp(word); });
         searchAnyWords = new RegExp(words.concat(stemmed_words).join('|'), 'gi');
     } else {
-        searchWordsReg = [];
+        searchWords = searchWordsReg = [];
         searchAnyWords = null;
     }
 }
@@ -226,6 +323,17 @@ function displayLinks() {
     var nbFirst = 3*4;
     var html = block(l.slice(0, nbFirst)) +
         (l.length > nbFirst ? block(l.slice(nbFirst)) : '');
+    if (l.length === 0) {
+        var words = approxSearch();
+        var msg = searchWords.length === 1 ?
+            'Aucune application ne correspond à votre recherche.' :
+            'Aucune application ne correspond à tous les termes de votre recherche.';
+        if (words.length) {
+            var suggestions = h.simpleMap(words, function (w) { return '<a href="#' + w + '">' + w + '</a>'; }).join(" ou ");
+            msg = 'Essayez avec cette orthographe : ' + suggestions + '<p>' + msg;
+        }
+        html = "<div class='noResult'>" + msg + "</div>";
+    }
   h.simpleQuerySelector(".liste-service").innerHTML = html;   
   displayedApps = l;
 };
