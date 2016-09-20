@@ -1,5 +1,5 @@
 #globalcontainer {
-   margin: 1em;
+   margin: 2em;
  }
  
 .intro { background-color: #fff; color: #555;  
@@ -34,6 +34,13 @@
 
 }
 
-.moodle-epi-ens .generaltable.sortable.dataTable TH { background-color: #FFDBC4 !important; }
+.moodle-epi .generaltable.sortable.dataTable TH {}
 .moodle-epi-ens .generaltable.sortable.dataTable TH { background-color:  #F7E4D5 !important; }
+
 .moodle-epi-ens .odd TD {  background-color: #ddd !important;} 
+.moodle-epi .odd TD {  background-color: #eee !important;} 
+
+
+.sorting_1 {  background-color: #fff !important; border-left:1px dotted #999; border-right:1px dotted #999;}
+
+ 
