@@ -441,6 +441,6 @@ window.bandeau_ENT.onload = function (pE_) {
   withInfo();
     
   h.onReady(function () {
-      document.getElementById("pE-footer-inner-app").innerHTML = document.getElementById("enquete").innerHTML;
+      document.getElementById("pE-footer-inner-app").appendChild(document.getElementById("enquete").children[0]);
   });
 };
