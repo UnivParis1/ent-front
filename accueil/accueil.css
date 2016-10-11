@@ -247,3 +247,15 @@ padding-right: 1.5em;
 .noResult {
     margin-top: 3em;
 }
+
+.alwaysVisible {
+    bottom: 0px;
+    right: 0px;
+    position: fixed;
+}
+/* disabled fixed-tchat, we fix the whole parent <div> */
+#pE-tchat.fixed-tchat {
+    bottom: initial !important;
+    right: initial !important;
+    position: initial !important;
+}

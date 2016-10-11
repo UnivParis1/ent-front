@@ -132,6 +132,36 @@ PseudoTrie.prototype.search = function(word, maxDist) {
   return r;
 };
 
+function debounce(func, wait) {
+    var timeout;
+    return function() {
+        clearTimeout(timeout);
+        timeout = setTimeout(function() {
+            timeout = null;
+            func();
+        }, wait);
+    };
+}
+
+function setClassIfNonBottom(elt, className) {
+    function check() {
+        if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
+            h.removeClass(elt, className);
+        } else {
+            elt.className += " " + className;
+        }
+    }
+    var check_ = debounce(check, 20);
+    setTimeout(function () {
+        window.addEventListener('scroll', check_);
+        window.addEventListener('resize', check_);
+        if (window.MutationObserver) {
+            new MutationObserver(check_).observe(document, { childList: true, subtree: true });
+        }
+    });
+    check();
+}
+
 function tomorrow() {
     var d = new Date();
     d.setDate(d.getDate() + 1);
@@ -441,6 +471,8 @@ window.bandeau_ENT.onload = function (pE_) {
   withInfo();
     
   h.onReady(function () {
-      h.prependChild(document.getElementById("pE-footer-inner-app"), document.getElementById("enquete").children[0]);
+      var div = document.getElementById("pE-footer-inner-app")
+      h.prependChild(div, document.getElementById("enquete").children[0]);
+      setClassIfNonBottom(div, "alwaysVisible");
   });
 };
