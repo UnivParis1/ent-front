@@ -418,7 +418,9 @@ function withInfo() {
       // unchanged, do nothing (IE11 placeholder bug workaround)
       return;
     }
-    document.location.hash = '';
+    if (document.location.hash) {
+        history.pushState({}, "", document.location.href.replace(/#.*/, ''))
+    }
     setSearchWords(this.value);
     displayLinks();
     if (this.value.length > 2) server_log_async({ user: pE.DATA.user, results: displayedApps.length, search: rawSearch });
