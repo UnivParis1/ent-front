@@ -263,3 +263,7 @@ padding-right: 1.5em;
     right: initial !important;
     position: initial !important;
 }
+
+#pE-header .pE-title-app:before, #pE-header .pE-title-app:after {
+    display: none;
+} 
