@@ -1,9 +1,9 @@
 @font-face {
 font-family: 'Brandon Grotesque';
-src: url('//www.univ-paris1.fr/fileadmin/templates/v2/font/brandon_grotesque.eot?') format('eot'),
-     url('//www.univ-paris1.fr/fileadmin/templates/v2/font/brandon_grotesque.otf') format('truetype'),
-     url('//www.univ-paris1.fr/fileadmin/templates/v2/font/brandon_grotesque.woff') format('woff'),
-     url('//www.univ-paris1.fr/fileadmin/templates/v2/font/brandon_grotesque.svg#BrandonGrotesque') format('svg');
+src: url('//www.pantheonsorbonne.fr/fileadmin/templates/v2/font/brandon_grotesque.eot?') format('eot'),
+     url('//www.pantheonsorbonne.fr/fileadmin/templates/v2/font/brandon_grotesque.otf') format('truetype'),
+     url('//www.pantheonsorbonne.fr/fileadmin/templates/v2/font/brandon_grotesque.woff') format('woff'),
+     url('//www.pantheonsorbonne.fr/fileadmin/templates/v2/font/brandon_grotesque.svg#BrandonGrotesque') format('svg');
 font-weight: normal;
 font-style: normal;
 }
