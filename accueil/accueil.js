@@ -438,6 +438,7 @@ function withInfo() {
       if (displayedApps && displayedApps.length === 1) {
           document.location = displayedApps[0].url;
       }
+      return false; // block <form> submission
   };
 
   h.simpleQuerySelector(".liste-service").onmousedown = function (event) {
