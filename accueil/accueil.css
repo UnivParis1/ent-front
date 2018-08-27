@@ -114,14 +114,14 @@ html {
 
 .liste-tags a {
     text-decoration: none;
-    color: #777;
+    color: #666;
     padding: 0.2rem 1em;
     margin-bottom: 0.5rem;
     display: inline-block;
 }
 
 .liste-tags a.selected {
-    color: #C89108;
+    color: #9f6c07;
     border-bottom: 3px solid #C89108;
 }
 
