@@ -407,7 +407,7 @@ function withInfo() {
   // remove splash screen
   document.getElementById("loading").className = "hidden";
     
-  h.simpleQuerySelector('#pE-header .pE-title-ent').innerHTML = '';
+  h.simpleQuerySelector('#pE-header .pE-title-ent').hidden = true;
   h.simpleQuerySelector('#pE-header .pE-title-separator').innerHTML = '';
   h.simpleQuerySelector('#pE-header .pE-title-app-long').innerHTML = 'Environnement numérique de travail (ENT)';
   h.simpleQuerySelector('#pE-header .pE-title-app-short').innerHTML = 'ENT';
