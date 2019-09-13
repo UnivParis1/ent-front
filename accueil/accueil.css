@@ -17,13 +17,29 @@ html {
     color: #00326E;
     text-decoration: none;
 }
+
+h2 a {
+    color: #2055bb;
+    text-decoration: none;
+}
+
+h3 {
+    margin-bottom: 0;
+    color: #9f6c07;
+    font-size: 0.95rem;
+    font-weight: normal;
+}
+
 .subtitle {
     position: absolute;
     top: 58px;
     font-size: 15px;
-    left: 53px;
+    left: 65px;
 }
 
+.noResult {
+    padding: 1rem;
+}
 .search {
     text-align: center;
     margin: 4em 0 0.5em;
@@ -35,10 +51,8 @@ html {
 
 .searchLoupe {
     vertical-align: middle;
-    height: 32.5px;
+    height: 2rem;
     opacity: 0.5;
-    Xcolor: #888;
-    Xfont-size: 180%;
     float: right;
     margin-left: -40px;
 }
@@ -46,8 +60,8 @@ html {
 .search input {
     display: inline-block;
     height: 31px;
-    width: 25em;
-    padding: 0 30px 0 1em;
+    width: 28rem;
+    padding: 0 2rem 0 1em;
 
     border: 1px solid #aaa;
     border-radius : 5px;
@@ -77,30 +91,6 @@ html {
   color: #aaa;
 }
 
-
-.liste-tags {
-    position: relative;
-}
-.liste-tags > div {
-    overflow-x: auto;
-}
-.liste-tags {
-    text-align: center;
-    margin-top: 2.5em;
-    margin-bottom: 1.5em;    
-    margin-left: 2em;
-    font-size: 9px;
-
-    text-transform: uppercase;
-    font-family: "Brandon Grotesque", Arial, sans-serif;
-
-    white-space: nowrap;
-}
-
-.liste-tags::-webkit-scrollbar {
-    display: none;
-}
-
 .blur-right {
     background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1));
     position: absolute;
@@ -112,18 +102,6 @@ html {
     z-index: 2;
 }
 
-.liste-tags a {
-    text-decoration: none;
-    color: #666;
-    padding: 0.2rem 1em;
-    margin-bottom: 0.5rem;
-    display: inline-block;
-}
-
-.liste-tags a.selected {
-    color: #9f6c07;
-    border-bottom: 3px solid #C89108;
-}
 
 XX.search a.searchButton {
 background-color: #fff;
@@ -134,125 +112,313 @@ background-position: 0 12px;
 padding-right: 1.5em;
 }
 
-.liste-service {
-    max-width: 1100px;
+.search-results {
+    width: 31rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+}
+.search-results.open {
+    display: block;
+}
+.search-results > div {
+    position: absolute;
+    z-index: 10;
+    width: 31rem;
+    margin-top: 0.4rem;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    background: #fff;
+}
+.search-results ul {
+    list-style: none outside none;
+    padding-left: 0.3rem;
+    margin-bottom: 0;
+}
+
+.search-services ul {
+    text-align: center;
+    line-height: 0;
+}
+
+.search-persons .warning {
+    display: inline-block;
+    padding-bottom: 1rem;
+}
+
+.search-persons a.more-results {
+    display: block;
+    background: #666;
+    color: #fff !important;
+    padding: 0.3rem;
+    margin-bottom: 0;
+}
+.search-persons a.more-results:hover {
+    color: #fff !important;
+    opacity: 0.9;
+}
+
+.search-persons ul {
+    background: #eee;
+    padding: 1rem 1rem 0;
+    border-top: 2px dotted #aaa;
+    text-align: left;
+}
+
+.search-results img {
+    width: 36px;
+    opacity: 0.4;
+    filter: sepia(100%) hue-rotate(-176deg);    
+}
+
+.liste-any {
+    max-width: 60rem;  
+    margin-bottom: 5px;
+
     margin-left: auto;
     margin-right: auto;
 }
 
-.liste-service ul{
+.liste-any ul{
     display: inline-block;
-    Xflex-flow: row wrap;
     list-style: none outside none;
     padding: 0;
-    Xjustify-content: space-around;
     text-align: center;
 }
+
+.liste-service > ul {
+    width: 100%;
+    line-height: 1px; /* for li.padding */
+}
+
+.search-services li,
 .liste-service li {
     display: inline-block;
     vertical-align: top;
-    margin: 11px 0.7em 1em;
+    margin: 0 0.7em 0.65em;
     position: relative;
-    font-size: 13px;
-    height: 8em; /*4.5em;*/
-    width: 16.5em;
-    Xflex: 0 0 16.5em;
+    font-size: 12px; line-height: 13px;
     text-align: left;
+    border-radius : 6px;
+    padding: 1px;
+}
+.liste-service li {
+    background: #d5dceb;
+    border: 1px solid #99b2d9;
 }
 
-@media screen and (max-width: 700px) {
-    .liste-service li {
-        font-size: 10px;
-    }
-    .subtitle {
-        display: none;
-    }
-    .search {
-        margin: 0;
-    }
-    .search form {
-        width: 90%;
-    }
-    .searchLoupe {
-        position: absolute;
-        right: 30px;
-    }
-    .search input {
-        width: 100%;
-        box-sizing: border-box;
-
-    }
-    .liste-tags {
-        margin-bottom: 0;
-        font-size: 7px;
-    }
-    
+h2 {
+    color: #666;
+    font-size: 1rem;
+    font-weight: normal;
 }
 
-@media screen and (max-width: 360px) {
-    .liste-service li {
-        margin-left: 0.3em;
-        margin-right: 0.3em;
-        Xflex: 0 0 100%;
-        Xwidth: 100%;
-        width: 15em;
-    }
+h2.liste-any {
+    padding-left : 8px;
+    text-transform: uppercase;
 }
 
-.liste-service li.padding {
-    height: 0;
+h3 {
+    margin-bottom: 0;
+    color: #9F6c07;
+    font-size: 0.95rem;
+    font-weight: normal;
+    padding-left: 16px;
+}
+
+/*.liste-persons li {
+    background: #f4f6fa;
+}*/
+
+.search-results li.padding,
+.liste-any li.padding {
+    width: 203px;
     margin-top: 0;
     margin-bottom: 0;
+    border-color: transparent;
+    background: transparent;
 }
 
-.liste-service li a {
+
+.search-services li  {
+   padding-top:10px; 
+   border: 1px dotted #ccc;  
+} 
+
+.search-services li:hover {
+   background: #d5dceb;
+   
+} 
+
+.search-services li img.icon,
+.liste-service li img.icon {
+     padding: 21px 3px;
+    width: 35px;
+    opacity: 0.4;
+    filter: sepia(100%) hue-rotate(-176deg);
+}
+
+
+ 
+
+
+.search-services li img.icon {
+    padding-top: 0.3rem;
+}  
+
+.search-services li:hover img.icon {
+    filter: initial;
+    opacity: initial; 
+}
+
+.search-services li:hover a > span {
+    color: #555;
+}
+
+.search-services li a > span,
+.liste-service li a > span {
     text-decoration: none;
+    display: inline-block;
+    width: 156px;
+    height: 80px;
+    vertical-align: top;
+    padding: 0 3px;
+    color: #333;
 }
 
-.liste-service .title .title-text {
-    color: #2e5693;
-    font-size: 125%;
-    vertical-align: middle;
-    display: table-cell;
-    height: 3em;
-}
+.search-services .title,
 .liste-service .title {
     box-sizing: border-box;
     display: block;
-    background: #d5dceb;
-    padding-left: 0.9em;
-    
-    -moz-border-radius : 7px 7px 0 0;
-    border-radius : 7px 7px 0 0;
-    -webkit-border-top-left-radius : 7px;
-    -webkit-border-top-right-radius : 7px;
+    padding-top: 1rem;
+    font-weight: bold;
 }
+.search-services .title {
+    padding-top: 0;
+}
+
+.search-services .description,
 .liste-service .description {
-    color: #666;
-    padding: 1em 1em 0.2em;
+    font-size: 0.75rem;
+    padding-top: 0.2em;
     display: inline-block;
-    font-size: 90%;
-    border-left: 2px solid #d5dceb;
-    height: 2.8em;
+    height: 3rem;
+    overflow: hidden;
 }
+
+
+.search-persons a:hover,
 .liste-service .title a:hover {
-    color: #8d8767 !important;
+    color: #2e5693 !important;
 }
+.search-persons a:visited,
 .liste-service .title a:visited {
     color: #2e5693;
 }
 
 .liste-service .title img {
     float: right;   
-    width: 3.23em;
-    height: 3.23em;
     opacity: 0.2;
     margin: 0.31em 0.38em 0 0;
     display: none;
 }
 
-.noResult {
-    margin-top: 3em;
+.liste-favorites {
+    text-align: center;
+}
+
+.liste-favorites > .advice {
+    font-size: 12px;
+    color: #666;    
+    padding-top: 0.5rem;
+    margin-bottom: 25px;
+}
+
+.liste-favorites ul {
+    width: 32rem;
+    box-sizing: border-box;
+    margin-bottom: 0;
+    padding-top: 18px; padding-bottom: 11px;
+    padding-right: 8px;
+}
+
+.liste-favorites a {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 11px;
+    color: #444;
+}
+
+.liste-favorites a:hover { 
+    color: #2055bb;
+    filter: brightness(1.25);
+}
+
+.liste-favorites li {
+    display: inline-block;
+    padding-left: 0.55rem;
+    padding-bottom: 0.5rem;
+    padding-right: 0.1rem;
+    text-align: center;
+    vertical-align: top;
+}
+
+.liste-favorites .remove {
+    float: right;
+    width: 0;
+    height: 0;
+}
+.liste-favorites .remove img {
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+
+    margin-left: -1.1rem;
+    margin-top: -0.9rem;
+    padding: 0.5rem;
+    cursor: pointer; 
+}
+
+.liste-favorites img.icon,
+li.drag_drop_dest {
+    width: 3.45rem;
+    height: 3.45rem;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid #99b2d9;
+    border-radius: 8px;
+    pointer-events: none;
+}
+li.drag_drop_dest {
+    margin-left: 0.45rem;
+}
+
+.will-move {
+    display: none !important;
+}
+
+.liste-favorites .toggle-on, .liste-favorites .toggle-off {
+    width: 1.25rem;
+    cursor: pointer;
+    margin-left: 4px;
+    transition: transform 0.4s;
+}
+
+.liste-favorites .toggle-on:hover, .liste-favorites .toggle-off:hover {
+    transform: scale(1.3); 
+}
+
+.liste-favorites.editMode .toggle-off {
+    display: none;
+}
+.liste-favorites:not(.editMode) .toggle-on {
+    display: none;
+}
+
+
+.liste-favorites.editMode > .liste, .drop-highlight {
+    border: 3px dashed #C89108;
+    border-radius: 1rem;
+    margin-top: 30px;
 }
 
 .alwaysVisible {
@@ -269,4 +435,290 @@ padding-right: 1.5em;
 
 #pE-header .pE-title-app:before, #pE-header .pE-title-app:after {
     display: none;
+}
+
+.search-persons a:visited,
+.search-persons a {
+    text-decoration: none;
+    vertical-align: top;
+    display: inline-block;
+    color: #444;
+    font-size: 12px;
+    margin-bottom: 1rem;
+}
+
+.person-photo {
+    margin-right: 8px;
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+}
+.person-photo div {
+    margin: 2px 6px;
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+    background-size: 36px;
+    background-position: 0 -7px;
+    display: block;
+}
+
+.removeFavorite, .addFavorite {
+    float: right;
+    color: #2e5693;
+    padding : 5px 2px 1px 1px;
+}
+.removeFavorite {
+    opacity: 0.5;
+}
+.addFavorite {
+	opacity: 0.15;
+
+}
+
+.removeFavorite img, .addFavorite img {
+    width: 1rem;
+    transition: all 0.3s ease-in-out;
+}
+
+
+.removeFavorite img:hover, .addFavorite img:hover {
+    transform: scale(1.4);
 } 
+
+.advice img {
+    width: 0.9rem;
+    margin-bottom: -0.3rem;
+    opacity: 0.6;
+}
+
+.no-drag-drop .liste-service li:hover {
+    border-color: #6f90b8;
+    background-color:white;
+}
+.no-drag-drop .liste-service li.padding:hover {
+    border-color: transparent;
+}
+
+.no-drag-drop .liste-service li:hover a {
+	color: #00326e;
+}
+
+.no-drag-drop .liste-service li:hover img.icon {
+    filter: none;
+    opacity: 1;
+}
+
+.no-drag-drop .liste-service li:hover .addFavorite {
+    visibility: visible;
+    opacity: 1;
+}
+
+.big-unicode {
+    font-size: 1.4rem;
+    vertical-align: sub;
+}
+
+.liste-news > div {
+    margin: 0 -2.8rem; 
+    text-align: center;
+}
+
+.liste-news ul {
+    text-align: left;
+}
+
+
+/* YAK - pascal */ 
+
+.liste-news ul {
+    max-height: 10rem;
+    overflow-y: hidden;
+    width: calc(100% - 93px);
+    text-align: center;
+
+} 
+
+
+.liste-news a {
+    display: inline-block;
+    width: 183px;
+    height: 9rem;
+    border-left: 1px solid #aaa;
+    padding: 0.2rem 0.7rem;
+    margin: 0 0.5rem;
+    text-decoration: none;
+    color: #444;
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+.liste-news li {
+    display: inline-block;
+    vertical-align: top;
+}
+
+/* YAK */ 
+.liste-news li a:hover {
+    
+    border-left: 1px solid #00326e; 
+}
+
+
+
+
+
+.liste-news .title {
+    color: #00326E;
+}
+
+.liste-news .date {
+    font-size: 0.6rem;
+    margin-top: 0.6rem;
+}
+
+.liste-news .description {
+    font-size: 0.7rem;
+    margin-top: 0.6rem;
+}
+
+.liste-news .scroll {
+    display: inline-block;
+    height: 10rem;
+    line-height: 10rem;    
+    font-size: 2rem;
+    vertical-align: top;
+    color: #aaa;
+
+    background: transparent;
+    border: none;
+    padding: 0 8px; /* force same value (needed otherwise iPad has different padding) */
+}
+.liste-news .scroll:not(:disabled) {
+    cursor: pointer;
+}
+.liste-news .scroll:not(:disabled):hover {
+    color: #2e5693;
+    text-shadow : 0px 2px 2px rgba(12,23,50,0.66);
+}
+
+.hide {
+    display: none;
+}
+
+
+#liens-a-droite {
+    position: fixed;
+    top: 47vh;
+    right: 0;
+    z-index: 1;
+}
+
+#liens-a-droite > div {
+    padding: 0.2em 0;
+}
+#liens-a-droite > div > div {
+    box-shadow: 0 0 1em white;
+    background: #00326E;
+    padding: 1em;
+    font-size: 14px;
+    padding: 0.5em 0.16em 0.5em 0.4em;
+    border-left: 3px solid #C89108;
+}
+#liens-a-droite > div > div:hover {    
+    background: #9f6c07;    
+}
+#liens-a-droite a {
+    color: white;
+    text-decoration: none;
+}
+#liens-a-droite img {
+    height: 2em;
+    vertical-align: middle;
+    padding-right: 1em;
+}
+
+@media screen and (max-width: 1350px) {
+    #liens-a-droite:not(:hover) {
+        right: -1em;
+    }
+    #liens-a-droite:not(:hover) a span {
+        display: none;
+    }
+} 
+
+@media screen and (max-width: 1024px) {
+    .liste-news > div {
+        margin: 0px;      
+    }
+
+    .liste-news a {      
+        max-width: 203px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+   
+    .subtitle {
+        display: none;
+    }
+    .search {
+        margin: 0;
+    }
+    .search form, .search-results, .search-results > div {
+        width: 90%;
+    }
+    .searchLoupe {
+        position: absolute;
+        right: 30px;
+    }
+    .search input {
+        width: 100%;
+        box-sizing: border-box;
+
+    }
+
+    .search-results li.padding  { 
+        width: 170px;
+    }
+
+
+
+    .liste-favorites img.icon, li.drag_drop_dest {
+        width: 45px; 
+        height: 45px;
+        padding: 0.1rem 0.2rem;
+        border: none;
+    }
+    .liste-favorites ul {
+        width: 100%;
+    }
+    .liste-favorites .toggle-on, .liste-favorites .toggle-off {
+        width: 1.6rem;
+        margin: 0 0 -0.4rem 0.5rem;    
+    }
+    .liste-favorites .remove img {
+        width: 1.2rem;
+        height: 1.2rem;
+        margin-left: -1.5rem;
+        margin-top: -0.7rem;
+    }
+
+    .liste-news > div { 
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .liste-news a {
+        width: 178px;
+        margin: 0px;
+        padding: 0;
+        padding-top: 0.7rem;
+        border-left: none;
+    }
+
+    .liste-news > div {
+        background: #fff;
+    }  
+}
