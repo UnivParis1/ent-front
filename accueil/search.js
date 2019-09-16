@@ -275,7 +275,7 @@ function openCloseSearchResults(wantOpen) {
     if (wantOpen && !hideOnClickOutsideListener) {
         hideOnClickOutsideListener = function(event) {
             console.log(event);
-            if (!elt.contains(event.target)) {          
+            if (!elt.contains(event.target) && document.contains(event.target)) { // if event.target is not rattached anymore, it means "searchApps" have been called and current star is orphaned
                 openCloseSearchResults(false);
             }
         };

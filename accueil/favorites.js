@@ -62,8 +62,11 @@ function add_or_remove_favorite(appId, add_or_remove) {
 function after_modify_favorites() {
     console.log("addFavorite after:", favorites);
     saveFavorites(true);
+
+    // update stars:
     displayFavorites();
     displaySuggestions();
+    if (window.searchApps) searchApps();
 }
 
 function onclick_add_or_remove_favorite(event, add_or_remove) {
