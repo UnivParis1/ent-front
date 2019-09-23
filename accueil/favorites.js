@@ -57,6 +57,9 @@ function add_or_remove_favorite(appId, add_or_remove) {
         favorites.splice(to_remove, 1);
         after_modify_favorites();
     }
+    let log = { user: pE.DATA.user };
+    log[add_or_remove] = appId;
+    server_log(log);
 }
 
 function after_modify_favorites() {
@@ -148,7 +151,9 @@ function ondragenter_(event) {
 function ondrop_favorite(event) {
     event.preventDefault();
     console.log('ondrop_favorite', event.target, drag_drop_dest);
-    addFavorite(event.dataTransfer.getData('text'), drag_drop_dest, event.target);    
+    var appId = event.dataTransfer.getData('text');
+    addFavorite(appId, drag_drop_dest, event.target);    
+    server_log({ user: pE.DATA.user, move: appId, index: drag_drop_dest.position });
 }
 
 var ondragenter_or_leave = dragenter_or_leave_wrapper(function(event) {
