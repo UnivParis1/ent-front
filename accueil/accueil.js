@@ -302,7 +302,7 @@ function withInfo() {
   h.simpleQuerySelector('#pE-header .pE-title-app-long').innerHTML = 'Environnement numérique de travail (ENT)';
   h.simpleQuerySelector('#pE-header .pE-title-app-short').innerHTML = 'ENT';
 
-  [ ".liste-favorites", ".liste-service" ].forEach(function (selector) {
+  [ ".liste-favorites", ".liste-service", ".search-services" ].forEach(function (selector) {
     h.simpleQuerySelector(selector).onmousedown = function (event) {
       var elt = h.eltClosest(event.target, "a[data-fname]");
       var fname = elt && elt.getAttribute('data-fname');
@@ -310,10 +310,14 @@ function withInfo() {
           var index = 1 + eltIndex(h.eltClosest(elt, "li"));
           var log = { user: pE.DATA.user, app: fname, index: index };
           if (selector.match(/favorites/)) log.favorite = true;
+          else if (selector.match(/search/)) log.search = rawSearch;
           server_log(log);
       }
     };
   });
+  h.simpleQuerySelector(".search-persons").onmousedown = function (event) {
+    server_log({ user: pE.DATA.user, person: true, search: rawSearch });
+  };
 
   displayFavorites();
   
