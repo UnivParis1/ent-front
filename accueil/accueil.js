@@ -341,11 +341,19 @@ function handleTabTitles() {
     });    
 }
 
+function handle_data_href_from_fname() {
+    h.simpleEach(h.simpleQuerySelectorAll('a[data-href-from-fname]'), function (elt) {
+        var app = pE.validApps[elt.getAttribute('data-href-from-fname')];
+        if (app) elt.href = app.url;
+    });
+}
+
 pE_args.onload = function (pE_) {
   pE = pE_;
   h = pE.helpers;
   favorites = pE.DATA.favorites || pE.DATA.topApps.filter(function (id) { return pE.validApps[id] }).slice(0, 5);
   handleTabTitles();
+  handle_data_href_from_fname();
 
   withInfo();
     
