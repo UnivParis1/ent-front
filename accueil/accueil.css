@@ -642,27 +642,38 @@ li.drag_drop_dest {
 }
 
 #liens-a-droite > div {
-    padding: 0.2em 0;
+    padding: 0.06em 0;
 }
 #liens-a-droite > div > div {
-    box-shadow: 0 0 1em white;
-    background: #00326E;
-    padding: 1em;
+    box-shadow: 0.1em 0.1em 0 0.1em #ece6e6;
+    background: white;
     font-size: 14px;
     padding: 0.5em 0.16em 0.5em 0.4em;
-    border-left: 3px solid #C89108;
+    border: 1px solid #ddd;
+    border-right: 0;
+    border-radius: 4px 0 0 4px;
 }
 #liens-a-droite > div > div:hover {    
-    background: #9f6c07;    
+    border: 1px solid #888;
+    border-right: 0;
+    background : #c89108;   
 }
 #liens-a-droite a {
-    color: white;
+    color: #666;
     text-decoration: none;
 }
 #liens-a-droite img {
-    height: 2em;
+    height: 1.6em;
     vertical-align: middle;
-    padding-right: 1em;
+    padding-right: 1.5em;
+    padding-left: 0.5em;
+    opacity: 0.35;
+}
+#liens-a-droite > div > div:hover img {
+    opacity: 0.5;
+}
+#liens-a-droite > div > div:hover a {
+    color:white;        
 }
 
 @media screen and (max-width: 1350px) {
