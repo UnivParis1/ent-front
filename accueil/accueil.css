@@ -676,13 +676,11 @@ li.drag_drop_dest {
     color:white;        
 }
 
-@media screen and (max-width: 1350px) {
-    #liens-a-droite:not(:hover) {
-        right: -1em;
-    }
-    #liens-a-droite:not(:hover) a span {
-        display: none;
-    }
+#liens-a-droite:not(:hover) {
+    right: -1em;
+}
+#liens-a-droite:not(:hover) a span {
+    display: none;
 } 
 
 @media screen and (max-width: 1024px) {
