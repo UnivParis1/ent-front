@@ -570,8 +570,6 @@ li.drag_drop_dest {
 .liste-news a {
     display: inline-block;
     width: 183px;
-    height: 9rem;
-    border-left: 1px solid #aaa;
     padding: 0.2rem 0.7rem;
     margin: 0 0.5rem;
     text-decoration: none;
@@ -583,14 +581,18 @@ li.drag_drop_dest {
 .liste-news li {
     display: inline-block;
     vertical-align: top;
-}
+    border-left: 1px solid #bbb;
+    height: 160px;
+} 
 
-/* YAK */ 
-.liste-news li a:hover {
-    
+.liste-news li:hover {
     border-left: 1px solid #00326e; 
+    background-color: #f8d36980;
+    transition: background-color 300ms linear; 
 }
-
+.liste-news li:nth-of-type(2n+2):hover {
+    background-color: #679ac633; 
+}
 
 
 
@@ -615,7 +617,7 @@ li.drag_drop_dest {
     line-height: 10rem;    
     font-size: 2rem;
     vertical-align: top;
-    color: #aaa;
+    color: #c89108;
 
     background: transparent;
     border: none;
