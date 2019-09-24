@@ -645,10 +645,10 @@ li.drag_drop_dest {
     padding: 0.06em 0;
 }
 #liens-a-droite > div > div {
-    box-shadow: 0.1em 0.1em 0 0.1em #ece6e6;
+    box-shadow: 0.1em 0.1em 0.1em 0.1em #3b36361a;
     background: white;
     font-size: 14px;
-    padding: 0.5em 0.16em 0.5em 0.4em;
+    padding: 0.5em 1.2em 0.5em 0.4em;
     border: 1px solid #ddd;
     border-right: 0;
     border-radius: 4px 0 0 4px;
@@ -665,7 +665,7 @@ li.drag_drop_dest {
 #liens-a-droite img {
     height: 1.6em;
     vertical-align: middle;
-    padding-right: 1.5em;
+    padding-right: 1.1em;
     padding-left: 0.5em;
     opacity: 0.35;
 }
