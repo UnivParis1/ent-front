@@ -57,9 +57,7 @@ function add_or_remove_favorite(appId, add_or_remove) {
         favorites.splice(to_remove, 1);
         after_modify_favorites();
     }
-    let log = { user: pE.DATA.user };
-    log[add_or_remove] = appId;
-    server_log(log);
+    server_log({ user: pE.DATA.user, app: appId, favorite: add_or_remove });
 }
 
 function after_modify_favorites() {
@@ -153,7 +151,7 @@ function ondrop_favorite(event) {
     console.log('ondrop_favorite', event.target, drag_drop_dest);
     var appId = event.dataTransfer.getData('text');
     addFavorite(appId, drag_drop_dest, event.target);    
-    server_log({ user: pE.DATA.user, move: appId, index: drag_drop_dest.position });
+    server_log({ user: pE.DATA.user, favorite: 'move', app: appId, index: drag_drop_dest.position });
 }
 
 var ondragenter_or_leave = dragenter_or_leave_wrapper(function(event) {

@@ -309,7 +309,7 @@ function withInfo() {
       if (fname) {
           var index = 1 + eltIndex(h.eltClosest(elt, "li"));
           var log = { user: pE.DATA.user, app: fname, index: index };
-          if (selector.match(/favorites/)) log.favorite = true;
+          if (selector.match(/favorites/)) log.favorite = 'click';
           else if (selector.match(/search/)) log.search = rawSearch;
           server_log(log);
       }
