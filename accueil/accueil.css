@@ -640,6 +640,7 @@ li.drag_drop_dest {
     top: 47vh;
     right: 0;
     z-index: 1;
+    transition: all 0.4s ease-in-out; 
 }
 
 #liens-a-droite > div {
@@ -655,12 +656,13 @@ li.drag_drop_dest {
     border-radius: 4px 0 0 4px;
 }
 #liens-a-droite > div > div:hover {    
-    border: 1px solid #888;
+    border: 1px solid #e7a70a80;
     border-right: 0;
     background : #c89108;   
+    box-shadow: 0.1em 0.1em 0.1em 0.1em #3b363699;    
 }
 #liens-a-droite a {
-    color: #666;
+    color: #454545;
     text-decoration: none;
 }
 #liens-a-droite img {
