@@ -351,7 +351,7 @@ function handle_data_href_from_fname() {
 pE_args.onload = function (pE_) {
   pE = pE_;
   h = pE.helpers;
-  favorites = pE.DATA.favorites || pE.DATA.topApps.filter(function (id) { return pE.validApps[id] }).slice(0, 5);
+  favorites = pE.DATA.favorites || (pE.DATA.topApps || []).filter(function (id) { return pE.validApps[id] }).slice(0, 5);
   handleTabTitles();
   handle_data_href_from_fname();
 
