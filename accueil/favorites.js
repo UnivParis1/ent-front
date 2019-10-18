@@ -4,6 +4,9 @@ var onRestdbLogin;
 var editMode = false;
 
 function saveFavorites(firstTime) {
+    // for some reason, it can contain bad things like null or urls, clean it up:
+    favorites = favorites.filter(function (appId) { return pE.validApps[appId] })
+
     var url = favoritesRestdbUrl + '/$user/list';
     xhr(url, 'PUT', { withCredentials: true }, JSON.stringify({ list: favorites }), function (err, resp) {
         if (err && firstTime) {
