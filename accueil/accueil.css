@@ -634,6 +634,9 @@ li.drag_drop_dest {
     display: none;
 }
 
+.pE-sticky-footer #pE-footer-inner {
+    z-index: 2; /* ensure raised-tchat is above #liens-a-droite */
+}
 
 #liens-a-droite {
     position: fixed;
