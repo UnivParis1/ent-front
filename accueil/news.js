@@ -1,6 +1,5 @@
 var nbNewsDisplayed = 4;
-var url = 'https://drupal-test.univ-paris1.fr/export/actualites/ent';
-url = '/ent-actualites';
+var urls = [ '/ent-actualites-intranet', '/ent-actualites' ];
 
 function formatOneNews(oneNews) {
     var html = "<div class='title'>" + oneNews.title + "</div>";
@@ -31,9 +30,19 @@ function displayNews() {
     h.simpleQuerySelector(".liste-news").innerHTML = html;
 }
 
-xhr(url, 'GET', { responseType: 'json' }, null, function(err, news_) {
-    if (err) { console.error(err); return; }
-    news = news_;
-    displayNews();
-})
-
+function getNews(urls) {
+    var url = urls.shift();
+    xhr(url, 'GET', { responseType: 'json' }, null, function(err, news_) {
+        if (err) { 
+            console.error(err); 
+        }
+        news = news.concat(news_ || [])
+        if (urls.length && news.length < nbNewsDisplayed) {
+            getNews(urls);
+        } else if (news.length) {
+            displayNews();
+        }
+    })    
+}
+news = [];
+getNews(urls);
