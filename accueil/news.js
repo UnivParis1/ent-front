@@ -1,6 +1,13 @@
 var nbNewsDisplayed = 4;
 var urls = [ '/ent-actualites-intranet', '/ent-actualites' ];
 
+function array_unique(array) {
+    function onlyUnique(value, index, self) { 
+        return self.indexOf(value) === index;
+    }
+    return array.filter(onlyUnique);
+}
+
 function formatOneNews(oneNews) {
     var html = "<div class='title'>" + oneNews.title + "</div>";
     if (oneNews.field_date_de_l_evenement) html += "<div class='date'>" + new Date(oneNews.field_date_de_l_evenement).toLocaleDateString() + "</div>";
@@ -24,7 +31,7 @@ function displayNews() {
 
     var html = "<div>" + 
                  scroll_button("❮", -1, newsOffset > 0) + 
-                 "<ul>" + links.join('') + "</ul>" + 
+                 "<ul>" + array_unique(links).join('') + "</ul>" + 
                  scroll_button("❯", 1, newsOffset + nbNewsDisplayed < news.length) + 
                 "</div>";
     h.simpleQuerySelector(".liste-news").innerHTML = html;
