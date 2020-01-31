@@ -125,8 +125,10 @@ function ondragstart_(event) {
     
     var appId = event.target.querySelector("[data-fname]").getAttribute('data-fname');
     event.dataTransfer.setData("text", appId);
-    var img = event.target.querySelector(".icon").cloneNode(); // can NOT size the img, cf https://stackoverflow.com/questions/26346905/html5-setdragimage-dragicon-width-does-absolutely-nothing
-    event.dataTransfer.setDragImage(img, 20, 20);
+    var img = event.target.querySelector(".icon");
+    if (img.tagName === 'IMG') {
+        event.dataTransfer.setDragImage(img.cloneNode(), 20, 20);  // can NOT size the img, cf https://stackoverflow.com/questions/26346905/html5-setdragimage-dragicon-width-does-absolutely-nothing
+    }
     
     setTimeout(function () { // must be done async otherwise "dragend" is generated in Chrome
         event.target.classList.add("will-move");
@@ -192,6 +194,7 @@ function displayFavorites() {
     var links = favorites.map(function (appId) { return pE.validApps[appId] }).filter(function (app) { return app }).map(computeFavoriteLink)
     var html = "<ul>" + links.join('') + "</ul>";
     h.simpleQuerySelector(".liste-favorites > .liste").innerHTML = html;   
+    if (pE.dynamic_agenda_icon) pE.dynamic_agenda_icon(".liste-favorites > .liste img[src$='agenda.svg']")
 }
 
 

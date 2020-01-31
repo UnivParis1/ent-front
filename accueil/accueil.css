@@ -405,7 +405,7 @@ h3 {
     cursor: pointer; 
 }
 
-.liste-favorites img.icon,
+.liste-favorites .icon,
 li.drag_drop_dest {
     width: 3.45rem;
     height: 3.45rem;
