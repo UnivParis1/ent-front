@@ -726,7 +726,7 @@ li.drag_drop_dest {
 
 
 
-    .liste-favorites img.icon, li.drag_drop_dest {
+    .liste-favorites .icon, li.drag_drop_dest {
         width: 45px; 
         height: 45px;
         padding: 0.1rem 0.2rem;
