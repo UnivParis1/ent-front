@@ -170,19 +170,18 @@ function onerror_iconUrl(elt) {
 function computeLink(app) {
   var url = app.url;
 //if (!url.match(/^http/)) url = pE.CONF.uportal_base_url + url.replace(/\/detached\//, "/max/");
-  var description = app.description || app.title;
   var img = app.img || '<img class="icon" alt="" src="' + iconUrl(app.fname) + '" draggable="false" onerror="onerror_iconUrl(this)">';
   var add_or_remove_favorite = 
     h.simpleContains(favorites, app.fname) ?
         "<div class='removeFavorite' onclick='onclick_removeFavorite(event)' title='Supprimer des favoris'><img src='images/star.svg'></div>" :
         "<div class='addFavorite' onclick='onclick_addFavorite(event)' title='Ajouter aux favoris'><img src='images/star-o.svg' alt=''></div>";
-  var a = "<a title='" + h.escapeQuotes(description) + "' href='" + url + "' data-fname='" + app.fname + "' draggable='false' >" +
+  var a = "<a title='" + h.escapeQuotes(app.title) + "' href='" + url + "' data-fname='" + app.fname + "' draggable='false' >" +
            img +
            "<span>" + add_or_remove_favorite + 
              "<span class='title'>" +
                "<span class='title-text'>" + formatAppField(app.text || app.title) + "</span>" +
              "</span>" +
-             "<span class='description'>" + formatAppField(description) + "</span>" +
+             "<span class='description'>" + formatAppField(app.description || app.title) + "</span>" +
            "</span></a>";
   return "<li draggable='true' ondragstart='ondragstart_add_favorite(event)' ondragend='ondragend_(event)'>" + a + "</li>";
 }

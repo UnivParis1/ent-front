@@ -180,9 +180,9 @@ function ondragend_(event) {
 
 function computeFavoriteLink(app) {
     var url = app.url;
-    var description = app.description || app.title;
+    var title = app.title || app.description;
     var removeFavorite = editMode ? "<div class='remove'><img onclick='onclick_removeFavorite(event)' title='Supprimer des favories' src='images/times-circle.svg' draggable='false'></div>" : '';
-    var a = "<a title='" + h.escapeQuotes(description) + "' " + (editMode ? '' : "href='" + url + "'") + " data-fname='" + app.fname + "' draggable='false'>" +
+    var a = "<a title='" + h.escapeQuotes(title) + "' " + (editMode ? '' : "href='" + url + "'") + " data-fname='" + app.fname + "' draggable='false'>" +
               removeFavorite +
               "<img class='icon' alt='' src='" + iconUrl(app.fname) + "' draggable='false' onerror='onerror_iconUrl(this)'>" +
               "<br><span class='title'>" + (app.shortText || app.text || app.title) + "</span>" +
