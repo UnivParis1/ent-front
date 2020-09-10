@@ -660,13 +660,16 @@ li.drag_drop_dest {
     padding: 0.06em 0;
 }
 #liens-a-droite > div > div {
-    box-shadow: 0.1em 0.1em 0.1em 0.1em #3b36361a;
+    box-shadow: 0.2em 0.05em 0.1em 0.05em #3b363661;
     background: white;
     font-size: 14px;
     padding: 0.5em 1.2em 0.5em 0.4em;
-    border: 1px solid #ddd;
+    border: 1px solid #cbcbcb;
     border-right: 0;
     border-radius: 4px 0 0 4px;
+    border-left: 1px solid #ddd;
+
+
 }
 #liens-a-droite > div > div:hover {    
     border: 1px solid #e7a70a80;
@@ -678,15 +681,27 @@ li.drag_drop_dest {
     color: #454545;
     text-decoration: none;
 }
-#liens-a-droite img {
+
+#liens-a-droite svg {
     height: 1.6em;
     vertical-align: middle;
-    padding-right: 1.1em;
+    padding-right: 1em;
     padding-left: 0.5em;
-    opacity: 0.35;
+    opacity:1;
+ 
 }
-#liens-a-droite > div > div:hover img {
-    opacity: 0.5;
+
+
+
+#liens-a-droite svg.video-camera { fill:#9f6c07; }
+#liens-a-droite svg.question-circle { fill:#9f6c07;}
+#liens-a-droite svg.pencil { fill: #257695;} 
+
+
+
+#liens-a-droite > div > div:hover svg {
+    opacity: 0.6;
+    fill:#000; 
 }
 #liens-a-droite > div > div:hover a {
     color:white;        
