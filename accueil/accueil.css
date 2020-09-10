@@ -244,6 +244,15 @@ h2.liste-any {
     text-transform: uppercase;
 }
 
+
+h2.liste-any a {
+    font-size: 1.4rem; 
+    font-family: Times,"Times New Roman", Georgia, serif;
+    font-style: italic;
+    text-transform: none;
+}
+
+
 h3 {
     margin-bottom: 0;
     color: #9F6c07;
