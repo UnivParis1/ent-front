@@ -589,7 +589,7 @@ li.drag_drop_dest {
 .liste-news li {
     display: inline-block;
     vertical-align: top;
-    border-left: 1px solid #bbb;
+    border-left: 1px solid #257695; 
     height: 160px;
 } 
 
@@ -612,6 +612,7 @@ li.drag_drop_dest {
 .liste-news .date {
     font-size: 0.6rem;
     margin-top: 0.6rem;
+    color: #9f6c07;
 }
 
 .liste-news .description {
