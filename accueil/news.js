@@ -10,8 +10,8 @@ function array_unique(array) {
 
 function formatOneNews(oneNews) {
     var html = "<div class='title'>" + oneNews.title + "</div>";
-    if (oneNews.field_date_de_l_evenement) html += "<div class='date'>" + new Date(oneNews.field_date_de_l_evenement).toLocaleDateString() + "</div>";
-    html += "<div class='description'>" + (oneNews.field_accroche || oneNews.body) + "</div>";
+    if (oneNews.field_news_date) html += "<div class='date'>" + new Date(oneNews.field_news_date).toLocaleDateString() + "</div>";
+    html += "<div class='description'>" + (oneNews.field_lead || oneNews.body) + "</div>";
     return "<li><a href='" + oneNews.view_node + "'>" + html + "</a></li>";
 }
 
