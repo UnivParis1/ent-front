@@ -1,5 +1,5 @@
 var nbNewsDisplayed = 4;
-var urls = [ '/ent-actualites-intranet', '/ent-actualites' ];
+var urls = [ '/ent-actualites' ];
 
 function array_unique(array) {
     function onlyUnique(value, index, self) { 
