@@ -1,5 +1,5 @@
 var nbNewsDisplayed = 4;
-var urls = [ '/ent-actualites' ];
+var urls = [ 'https://www.pantheonsorbonne.fr/export/actualites' ];
 
 function array_unique(array) {
     function onlyUnique(value, index, self) { 
