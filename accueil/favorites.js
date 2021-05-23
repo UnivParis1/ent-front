@@ -180,7 +180,7 @@ function ondragend_(event) {
 
 function computeFavoriteLink(app) {
     var url = app.url;
-    var title = app.title || app.description;
+    var title = app.description || app.title;
     var removeFavorite = editMode ? "<div class='remove'><img onclick='onclick_removeFavorite(event)' title='Supprimer des favories' src='images/times-circle.svg' draggable='false'></div>" : '';
     var a = "<a title='" + h.escapeQuotes(title) + "' " + (editMode ? '' : "href='" + url + "'") + " data-fname='" + app.fname + "' draggable='false'>" +
               removeFavorite +
