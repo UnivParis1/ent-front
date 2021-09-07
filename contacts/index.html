@@ -18,6 +18,8 @@
   }
   .contenu {
       margin: 0 1rem;
+  }
+  .sous-contenu {
       display: none;
   }
   .non-hidden {
@@ -26,21 +28,28 @@
   </style>
 </head>
 <body>
-    <div id="loading">
-        Veuillez patienter...
-    </div>
-    <div id="contenu-etu" class="contenu">
-        Pour toute information ou tout incident, veuillez contacter l'assistance téléphonique au
-        <a href="tel:0171251137">0171251137</a></span> depuis la France,
-        ou au <a href="tel:+33144078945">+33144078945</a> depuis l'étranger du lundi au vendredi de 9h00 à 17h00 sans interruption (hors périodes de vacances universitaires).
-    </div>
-    <div id="contenu-non-etu" class="contenu">
+    <div class="contenu">
         <h2>Standard</h2>
         <h3>Tél. 01.44.07.80.00</h3>
             <p><strong>Adresse postale :</strong></p>
             <p>Université Paris 1 Panthéon-Sorbonne
                 <br>12 place du panthéon
                 <br>75005 Paris</p>
+      <div id="loading">
+        <h2>Chargement en cours, veuillez patienter...</h2>
+      </div>
+      <div id="contenu-etu" class="sous-contenu">
+        <h2>Contact et Assistance</h2>
+            Si vous avez besoin de renseignements complémentaires,
+            une assistance téléphonique est à ma disposition.
+            <p></p>
+            Du lundi au vendredi, du 9h à 17h
+            <br><a href="tel:0171251137">01 71 25 11 37</a>
+            <p></p>
+            <small>Depuis l'étranger : <a href="tel:+33144078945">+33 1 44 07 89 45</a></small>
+        </h2>
+      </div>
+      <div id="contenu-non-etu" class="sous-contenu">
         <h2>En cas de problème technique informatique :</h2>
         <ul>
             <li>par téléphone&nbsp;: <strong>01 44 07 89 65</strong> (du lundi au vendredi de 9h00-13h00 et 14h00-17h00, sauf congés universitaires)</li>
@@ -49,6 +58,7 @@
         <p>Pour plus de détails, 
            voir <a href="http://www.univ-paris1.fr/ent/intranet2/dsiun/services/assistance/" title="Intranet DSIUN" target="http://www.univ-paris1.fr/ent/intranet2/dsiun/services/assistance/">l'intranet</a>
            de la DSIUN.</p>
+      </div>
     </div>
 
 </body>
