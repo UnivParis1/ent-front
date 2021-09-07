@@ -4,7 +4,12 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>Université Paris 1 Panthéon-Sorbonne: Contacts</title>
   
-  <script>window.prolongation_ENT_args = { current: 'CContacts', delegateAuth: true };</script>
+  <script>
+    window.prolongation_ENT_args = { current: 'CContacts', delegateAuth: true, onload: function (pE) {
+        var is_etu = pE.DATA.userAttrs.eduPersonAffiliation.includes("student");
+        document.getElementById("loading").innerHTML = '';
+        document.getElementById(is_etu ? "contenu-etu" : "contenu-non-etu").classList.add("non-hidden")
+    } };</script>
   <script src="/ProlongationENT/loader.js"> </script>
   
   <style>
@@ -13,12 +18,23 @@
   }
   .contenu {
       margin: 0 1rem;
+      display: none;
+  }
+  .non-hidden {
+      display: block;
   }
   </style>
 </head>
 <body>
-
-    <div class="contenu">
+    <div id="loading">
+        Veuillez patienter...
+    </div>
+    <div id="contenu-etu" class="contenu">
+        Pour toute information ou tout incident, veuillez contacter l'assistance téléphonique au
+        <a href="tel:0171251137">0171251137</a></span> depuis la France,
+        ou au <a href="tel:+33144078945">+33144078945</a> depuis l'étranger du lundi au vendredi de 9h00 à 17h00 sans interruption (hors périodes de vacances universitaires).
+    </div>
+    <div id="contenu-non-etu" class="contenu">
         <h2>Standard</h2>
         <h3>Tél. 01.44.07.80.00</h3>
             <p><strong>Adresse postale :</strong></p>
