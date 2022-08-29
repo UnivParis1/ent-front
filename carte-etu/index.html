@@ -1,0 +1,127 @@
+<!DOCTYPE html> 
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte Etudiant, Paris 1 Panthéon-Sorbonne</title>
+    <link href="./stylecarte.css" rel="stylesheet" type="text/css"/>
+</head> 
+<body>    
+<div data-role="page" id="pageCarte" >
+    <header>
+        <div class="logo-up1" align="center">
+            <a href="https://ent.univ-paris1.fr/"><img src="img/logo-univ-paris1.fr.svg" width="60%" alt="Logo université Paris 1 Panthéon-Sorbonne"/></a>
+        </div>
+        <div id="mymain">
+            <div style="width:55%" > 
+                <h2><img src="./img/titre.svg" alt="Carte étudiant, Paris île-de-France - FR"></h2>
+                <h3 id="anneeinsc">...</h3>
+                <p>
+                    N° étudiant : <span id="supannEtuId">________</span>
+                    <br>
+                    N° INE : <span id="supannCodeINE">___________</span>
+                </p> 
+            </div>
+            <div style="width:45%">
+                <img id="userphoto" alt=""/>
+            </div>
+        </div>
+    </header>
+                    
+    <div data-role="content" class="content">	
+        <span id="sn">...</span>
+        <br>
+        <span id="givenName">...</span>  
+        <p id="diplome">...</p>   
+    </div>        
+    
+    <ul class="pic">
+        <li> </li>
+        <li id="heure" class="timed">__:__:__</li>
+        <li class="chiffre">PIC : <a href="https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/how-to-participate/org-details/999859123">999859123</a> </li>
+    </ul>
+    
+    <div data-role="footer" class="footer">
+        <div class="barcode"><svg style="width: 100%" id="barcode"></svg></div>
+        <div class="qrcode-europeen"> <a href=""><canvas id="qrcode-europeen"></canvas></a> </div>
+        <div class="logo-una-europa"> <a href="https://www.una-europa.eu/"><img src="./img/Una-Europa-logo.svg"   width="auto"   alt="Logo unaEuropa"/></a> </div>
+        <div class="logo-carte-europeenne"> <a href="https://europeanstudentcard.eu/"><img src="./img/carte-tudiante-europ-enne-5165.png"   width="auto"   alt="Logo "/></a> </div>
+    </div>
+
+</div>
+
+<script src="JsBarcode.code128.min.js"></script>
+<script src="soldair-qrcode-1.5.0.js"></script>
+<script>
+    function loadScript(url, params) {
+        var elt = document.createElement("script");
+        elt.setAttribute("type", "text/javascript");
+        elt.setAttribute("src", url + "?" + (new URLSearchParams(params)).toString());
+        elt.setAttribute("async", "async");
+        elt.setAttribute("charset", "utf-8"); // workaround IE ignoring Content-Type
+        document.head.appendChild(elt);
+    }
+    function elt(id) {
+        return document.getElementById(id)
+    }
+    function set_heure() {
+        elt('heure').innerText = (new Date()).toLocaleTimeString('fr-FR')
+    }
+    function display_info(userAttrs) {
+        console.log("display_info", userAttrs);
+        if (userAttrs.anneeinsc) {
+        }
+        const inscr = userAttrs.importantEtuInscription
+        if (inscr) {
+            userAttrs.anneeinsc = [inscr.anneeinsc, inscr.anneeinsc + 1].join('-')
+            userAttrs.diplome = inscr.affect + " - " + inscr.typedip + " - " + inscr.etape
+        }
+        for (const attr of ["supannEtuId", "sn", "givenName", "supannCodeINE", "anneeinsc", "diplome"]) {
+            elt(attr).innerText = userAttrs[attr] || 'non étu'
+        }
+
+        set_heure()
+        setInterval(set_heure, 1000)
+
+        JsBarcode("#barcode", userAttrs.employeeNumber || '000000000000', { height: 50, fontSize: 8, width: 2.5 });
+
+        if (userAttrs.ESCN) {
+            const canvas = document.getElementById('qrcode-europeen')
+            const escn_url = 'http://esc.gg/' + userAttrs.ESCN
+            QRCode.toCanvas(canvas, escn_url, { size: 100 })
+            canvas.parentElement.href = escn_url
+        }
+    }
+    function impersonate() {
+        const m = location.search.match(/uid=(\w+)/)
+        return m && m[1]
+    }
+
+    function on_ws(info) {
+        if (info.error) {
+            if (info.error === 'Unauthorized' && info.cas_login_url) {
+                document.location = info.cas_login_url + "?service=" + encodeURIComponent(document.location.href)
+            } else {
+                alert(info.error)
+                document.location = "/";
+            }
+        } else {
+            display_info(info)
+        }
+    }
+    
+    if (location.search.match(/ticket=/)) {
+        // cleanup url: remove ticket
+        try { window.history.replaceState({}, null, location.href.replace(/[?&]ticket=.*/, '')) } catch (e) {}
+    }
+	
+    let uid = impersonate()
+    
+    elt("userphoto").src += "https://userphoto.univ-paris1.fr/" + (uid ? "?uid=" + encodeURIComponent(uid) : '')
+
+    let ws_params = { callback: "on_ws" }
+    if (uid) ws_params.uid = uid
+    loadScript("https://wsgroups.univ-paris1.fr/carte-etu.php", ws_params)
+</script>
+</body>
+</html>
