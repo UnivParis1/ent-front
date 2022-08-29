@@ -63,7 +63,7 @@ h3 {
   padding: 0px;
   margin-bottom: 0px;
   font-variant-caps: all-small-caps;
-  color: #90650C;
+  color: #90650c;
 }
 
 ul.pic {
@@ -96,8 +96,8 @@ ul.pic li.chiffre {
   float: right;
 }
 ul.pic li.chiffre a {
-    text-decoration: none;
-    color: white;
+  text-decoration: none;
+  color: white;
 }
 
 @media screen and (min-width: 360px) {
