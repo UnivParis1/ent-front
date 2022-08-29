@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte Professionnelle, Paris 1 Panthéon-Sorbonne</title>
+    <link href="./stylecartePro.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div data-role="page" id="pageCartePro">
+    <header>
+        <div class="gauche">
+          <a href="https://www.enseignementsup-recherche.gouv.fr/"><img src="./img/1_MESR_RVB.svg" width="70%" alt="Logo MESR"></a>
+        </div>
+
+        <div class="droite">
+            <a href="https://ent.univ-paris1.fr/">
+                <img src="img/logo-univ-paris1.svg" alt="Logo université Paris 1 Panthéon-Sorbonne" width="85%">
+            </a>
+        </div>
+      </header>
+
+      <div id="mymainPro">
+        <div class="gauche"><img id="userphoto"></div>
+
+        <div class="droite">
+          <h2>
+            <img src="./img/titre-carte-pro.svg" alt="Carte professionnelle" />
+          </h2>
+          <p class="maj" id="statut"></p>
+          <p id="employeeType">...</p>
+          <p>N° : <span id="supannEmpId">...</span></p>
+        </div>
+      </div>
+
+      <div data-role="content" class="content">
+        <p class="maj" id="sn"></p>
+        <p id="givenName"></p>
+      </div>
+
+      <ul class="pic">
+        <li>&nbsp;</li>
+        <li class="timed" id="heure">__:__:__</li>
+        <li class="chiffre" id="date">__:__:__</li>
+      </ul>
+
+      <div data-role="footer" id="footer">
+        <div class="codebarre">
+            <svg style="width: 100%" id="barcode"></svg>
+        </div>
+        <br>
+        <div class="div1">
+          <a href="https://www.pantheonsorbonne.fr/">
+            <img src="./img/icone-univ-paris1.svg" alt="Logo université Paris 1 Panthéon-Sorbonne" width="auto">
+            <br>pantheonsorbonne.fr
+          </a>
+        </div>
+        <div class="div2">
+          <a href="https://www.una-europa.eu/">
+            <img src="./img/Una-Europa-logo.svg" alt="Logo unaEuropa" width="auto">
+            <br />una-europa.eu
+          </a>
+        </div>
+      </div>
+</div>
+</body>
+<script src="JsBarcode.code128.min.js"></script>
+<script>
+    function loadScript(url, params) {
+        var elt = document.createElement("script");
+        elt.setAttribute("type", "text/javascript");
+        elt.setAttribute("src", url + "?" + (new URLSearchParams(params)).toString());
+        elt.setAttribute("async", "async");
+        elt.setAttribute("charset", "utf-8"); // workaround IE ignoring Content-Type
+        document.head.appendChild(elt);
+    }
+    function elt(id) {
+        return document.getElementById(id)
+    }
+    function set_heure() {
+        elt('heure').innerText = (new Date()).toLocaleTimeString('fr-FR')
+    }
+    function set_date() {
+        elt('date').innerText = (new Date()).toLocaleDateString('fr-FR')
+    }
+    function display_info(userAttrs) {
+        console.log("display_info", userAttrs);
+        //const inscr = userAttrs.importantEtuInscription
+        //if (inscr) {
+        //    userAttrs.anneeinsc = [inscr.anneeinsc, inscr.anneeinsc + 1].join('-')
+        //    userAttrs.diplome = inscr.affect + " - " + inscr.typedip + " - " + inscr.etape
+        //}
+        for (const attr of ["sn", "givenName", "supannEmpId", "employeeType", "statut"]) {
+            elt(attr).innerText = userAttrs[attr] || ''
+        }
+
+        set_date()
+        set_heure()
+        setInterval(set_heure, 1000)
+
+        JsBarcode("#barcode", userAttrs.employeeNumber || '000000000000', { height: 50, fontSize: 8, width: 2.5 });
+
+    }
+    function impersonate() {
+        const m = location.search.match(/uid=(\w+)/)
+        return m && m[1]
+    }
+
+    function on_ws(info) {
+        if (info.error) {
+            if (info.error === 'Unauthorized' && info.cas_login_url) {
+                document.location = info.cas_login_url + "?service=" + encodeURIComponent(document.location.href)
+            } else {
+                alert(info.error)
+                document.location = "/";
+            }
+        } else {
+            display_info(info)
+        }
+    }
+    
+    if (location.search.match(/ticket=/)) {
+        // cleanup url: remove ticket
+        try { window.history.replaceState({}, null, location.href.replace(/[?&]ticket=.*/, '')) } catch (e) {}
+    }
+	
+    let uid = impersonate()
+    
+    elt("userphoto").src += "https://userphoto.univ-paris1.fr/" + (uid ? "?uid=" + encodeURIComponent(uid) : '')
+
+    let ws_params = { callback: "on_ws" }
+    if (uid) ws_params.uid = uid
+    loadScript("https://wsgroups.univ-paris1.fr/carte-pro.php", ws_params)
+</script>
+</html>

@@ -1,0 +1,188 @@
+body {
+  background: #ddd;
+  font-size: 14px;
+  padding: 0px;
+  margin: 0;
+  font-family: arial, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans",
+    "DejaVu Sans", Verdana, "sans-serif";
+}
+
+a,
+a:visited {
+  text-decoration: none;
+  color: #00326e;
+}
+
+a:hover,
+a:active {
+  text-decoration: underline;
+  color: #2055cc;
+}
+
+p {
+  margin-bottom: 5px;
+  margin-top: 7px;
+}
+div {
+  padding: 0px;
+  margin: 0px;
+}
+
+#pageCartePro {
+  max-width: 600px;
+  background: white;
+  border: 1px solid #ccc;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+header {
+  display: flex;
+  border-bottom: 4px solid #c89108;
+  clear: both;
+}
+
+.gauche {
+  width: 44%;
+}
+.droite {
+  width: 56%;
+  text-align: center;
+  padding-top: 20px;
+}
+
+#mymainPro {
+  min-height: 100px;
+  display: flex;
+  flex-direction: row;
+  background: #eeeff0;
+  color: white;
+  padding: 0px;
+}
+
+.maj {
+  font-variant-caps: all-small-caps;
+  font-size: 1.13rem;
+}
+
+#mymainPro div {
+  min-width: 45%;
+  margin: 0px;
+  color: #00326e;
+}
+#mymainPro h2 {
+  padding: 5px 0px 0px 0px;
+  margin: 0px;
+  background: #c89108;
+  margin-bottom: 22px;
+}
+#mymainPro img {
+  width: 100%;
+  border-right: 1px solid #ccc;
+}
+#mymainPro p {
+  padding-left: 17px;
+  padding-right: 15px;
+}
+
+#mymainPro h2 img {
+  margin: 0px;
+}
+
+.content {
+  background: #00326e;
+  color: #fff;
+  padding: 1px 5px 5px 17px;
+  font-size: 1.1em;
+  margin-top: -4px !important;
+}
+
+ul.pic {
+  background: #7d9bbf;
+  background: #658ab5;
+  color: white;
+  border-left: 18px solid #85a2c4;
+  font-size: 1.02em;
+  margin: 0px;
+}
+
+ul.pic li {
+  display: inline-block;
+  min-width: 1%;
+  text-align: center;
+  padding: 4px 1px 1px;
+  height: 19px;
+}
+
+ul.pic li.timed {
+  float: right;
+  background: #11447d;
+  border-left: 3px solid #3f6b9d;
+  padding: 4px 23px 1px 10px;
+}
+
+ul.pic li.chiffre {
+  background: #144b89;
+  opacity: 0.85;
+  border-left: 53px solid #446f9f;
+  padding: 4px 12px 1px 15px;
+  float: right;
+}
+
+#footer {
+  padding: 3% 0% 6%;
+  text-align: center;
+  vertical-align: middle;
+  color: #333;
+  font-size: 11px;
+}
+
+#footer .codebarre img {
+  width: 99%;
+  height: 78px;
+  margin-bottom: 29px;
+}
+
+#footer .div1,
+#footer .div2 {
+  width: 48%;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  min-height: 57px;
+}
+
+#footer .div1 img,
+#footer .div2 img {
+  height: 45px;
+  margin-bottom: 7px;
+}
+
+/*------------- landscape / paysage -------------------*/
+
+@media screen and (min-aspect-ratio: 13/9) {
+  #pageCartePro {
+    max-width: 500px;
+  }
+}
+
+@media screen and (min-width: 460px) {
+  .maj {
+    font-size: 1.2rem;
+  }
+  #mymainPro {
+    font-size: 1.05rem;
+  }
+  #mymainPro .maj {
+    font-size: 1.3rem;
+  }
+  #mymainPro h2 {
+    margin-bottom: 39px;
+  }
+  ul.pic {
+    border-left-width: 58px;
+  }
+  ul.pic li.chiffre {
+    border-left-width: 93px;
+  }
+}
