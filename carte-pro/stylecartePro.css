@@ -1,10 +1,12 @@
+/* Carte professionnelle 8 juillet 2022 - YAM */
+
 body {
   background: #ddd;
   font-size: 14px;
   padding: 0px;
   margin: 0;
-  font-family: arial, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans",
-    "DejaVu Sans", Verdana, "sans-serif";
+  font-family: arial, "DejaVu Sans", "Lucida Grande", "Lucida Sans Unicode",
+    "Lucida Sans", Verdana, "sans-serif";
 }
 
 a,
@@ -76,10 +78,7 @@ header {
   background: #c89108;
   margin-bottom: 22px;
 }
-#mymainPro img {
-  width: 100%;
-  border-right: 1px solid #ccc;
-}
+
 #mymainPro p {
   padding-left: 17px;
   padding-right: 15px;
@@ -89,12 +88,33 @@ header {
   margin: 0px;
 }
 
+#mymainPro .gauche {
+  background: #dbdbdb;
+  text-align: center;
+}
+#mymainPro .gauche img#userphoto {
+  width: 100%;
+}
+
+#mymainPro .droite {
+  padding-top: 0px;
+  vertical-align: middle;
+}
+#mymainPro .droite img {
+  width: 95%;
+  border-right: 0px;
+}
+
+#mymainPro .droite p {
+  text-align: left;
+}
+
 .content {
   background: #00326e;
   color: #fff;
   padding: 1px 5px 5px 17px;
   font-size: 1.1em;
-  margin-top: -4px !important;
+  margin-top: 0px !important;
 }
 
 ul.pic {
@@ -145,11 +165,12 @@ ul.pic li.chiffre {
 
 #footer .div1,
 #footer .div2 {
-  width: 48%;
+  width: 30%;
   display: inline-block;
   text-align: center;
   vertical-align: middle;
   min-height: 57px;
+  margin-top: 15px;
 }
 
 #footer .div1 img,
@@ -164,21 +185,49 @@ ul.pic li.chiffre {
   #pageCartePro {
     max-width: 500px;
   }
+  #mymainPro div {
+    min-width: 30%;
+  }
+
+  .gauche {
+    width: 36%;
+  }
+  .droite {
+    width: 64%;
+    padding-top: 0px;
+  }
+
+  header .gauche img {
+    width: 60%;
+    padding-top: 4px;
+  } /* mesr */
+  header .droite img {
+    width: 68% !important;
+    padding-top: 9px;
+  } /* univ */
+
+  #mymainPro .gauche img#userphoto {
+    width: 69%;
+  }
+  #mymainPro .droite img {
+    width: 77%;
+    border-right: 0px;
+  }
+
+  #mymainPro h2 {
+    margin-bottom: 20px !important;
+  }
+
+  .content {
+    padding-left: 44px;
+  }
 }
 
 @media screen and (min-width: 460px) {
-  .maj {
-    font-size: 1.2rem;
-  }
   #mymainPro {
-    font-size: 1.05rem;
+    font-size: 1.03rem;
   }
-  #mymainPro .maj {
-    font-size: 1.3rem;
-  }
-  #mymainPro h2 {
-    margin-bottom: 39px;
-  }
+
   ul.pic {
     border-left-width: 58px;
   }
