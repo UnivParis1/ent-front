@@ -15,6 +15,14 @@ body {
   margin-right: auto;
 }
 
+.logo-up1 img {
+  width: 55%;
+}
+
+.logo-up1 {
+  padding: 7px;
+}
+
 #mymain {
   min-height: 100px;
   display: flex;
@@ -30,8 +38,8 @@ body {
 }
 
 #mymain img {
-  width: 93%;
-  opacity: 0.98;
+  width: 90%;
+  opacity: 0.9;
 }
 
 h3 {
@@ -106,6 +114,7 @@ ul.pic li.chiffre a {
 }
 
 .footer .barcode {
+  padding-top: 6px; /* pour eviter qu'il se pose sur la barre de timing */
   border-bottom: 1px #bbb dotted;
   min-height: 48px;
 }
@@ -146,7 +155,7 @@ ul.pic li.chiffre a {
 }
 
 .logo-carte-europeenne img {
-  width: 80%;
+  width: 77%;
 }
 
 #sn {
@@ -190,5 +199,17 @@ ul.pic li.chiffre a {
 
   #diplome {
     margin-top: 7px;
+  }
+}
+
+@media screen and (min-width: 460px) {
+  .logo-up1 {
+    padding: 14px;
+  }
+  .logo-una-europa img {
+    width: 50%;
+  }
+  .logo-carte-europeenne img {
+    width: 70% !important;
   }
 }
