@@ -20,7 +20,7 @@ body {
 }
 
 .logo-up1 {
-  padding: 7px;
+  padding: 10px 4px 4px; 
 }
 
 #mymain {
@@ -204,7 +204,7 @@ ul.pic li.chiffre a {
 
 @media screen and (min-width: 460px) {
   .logo-up1 {
-    padding: 14px;
+    padding: 14px 14px 8px;
   }
   .logo-una-europa img {
     width: 50%;
