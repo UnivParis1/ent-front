@@ -118,6 +118,9 @@
             display_info(info)
         }
     }
+
+    // we get EsupUserApps layout for stats only
+    function pE_ignore() {}
     
     if (location.search.match(/ticket=/)) {
         // cleanup url: remove ticket
@@ -131,5 +134,7 @@
     let ws_params = { callback: "on_ws" }
     if (uid) ws_params.uid = uid
     loadScript("https://wsgroups.univ-paris1.fr/carte-pro.php", ws_params)
+
+    loadScript("https://ent.univ-paris1.fr/EsupUserApps/layout", { app: 'carte-pro', callback: 'ignore' })
 </script>
 </html>
