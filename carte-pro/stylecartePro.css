@@ -50,7 +50,11 @@ header {
 .droite {
   width: 56%;
   text-align: center;
-  padding-top: 20px;
+}
+
+header .droite {
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 #mymainPro {
@@ -194,7 +198,6 @@ ul.pic li.chiffre {
   }
   .droite {
     width: 64%;
-    padding-top: 0px;
   }
 
   header .gauche img {
