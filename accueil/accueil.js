@@ -175,7 +175,7 @@ function computeLink(app) {
     h.simpleContains(favorites, app.fname) ?
         "<div class='removeFavorite' onclick='onclick_removeFavorite(event)' title='Supprimer des favoris'><img src='images/star.svg'></div>" :
         "<div class='addFavorite' onclick='onclick_addFavorite(event)' title='Ajouter aux favoris'><img src='images/star-o.svg' alt=''></div>";
-  var a = "<a title='" + h.escapeQuotes(app.title) + "' href='" + url + "' data-fname='" + app.fname + "' draggable='false' >" +
+  var a = "<a title='" + h.escapeQuotes(app.title) + "' href='" + url + "' data-fname='" + app.fname + "'" + (app.openInNewTab ? " target='_blank'" : '') + " draggable='false' >" +
            img +
            "<span>" + add_or_remove_favorite + 
              "<span class='title'>" +
