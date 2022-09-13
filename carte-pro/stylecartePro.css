@@ -9,6 +9,10 @@ body {
     "Lucida Sans", Verdana, "sans-serif";
 }
 
+h1 {
+    margin: 0;
+}
+
 a,
 a:visited {
   text-decoration: none;
