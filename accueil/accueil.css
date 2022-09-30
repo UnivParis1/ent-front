@@ -59,7 +59,7 @@ h3 {
 
 .subtitle {
     position: absolute;
-    top: 58px;
+    top: calc(var(--pE-header-height) - 22px);
     font-size: 15px;
     left: 65px;
 }
