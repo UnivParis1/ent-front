@@ -7,6 +7,10 @@ body {
     "DejaVu Sans", Verdana, "sans-serif";
 }
 
+.hidden {
+    display: none;
+}
+
 #pageCarte {
   max-width: 600px;
   background: white;

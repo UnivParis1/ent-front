@@ -7,7 +7,7 @@
     <link href="./stylecarte.css" rel="stylesheet" type="text/css"/>
 </head> 
 <body>    
-<div data-role="page" id="pageCarte" >
+<div data-role="page" id="pageCarte" class="hidden" >
     <header>
         <h1 class="logo-up1" align="center">
             <a href="https://ent.univ-paris1.fr/"><img src="img/logo-univ-paris1.fr.svg" alt="Logo université Paris 1 Panthéon-Sorbonne"/></a>
@@ -110,6 +110,7 @@
                 document.location = "/";
             }
         } else {
+            elt("pageCarte").classList.remove("hidden")
             display_info(info)
         }
     }
