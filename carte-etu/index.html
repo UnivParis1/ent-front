@@ -85,6 +85,8 @@
         set_heure()
         setInterval(set_heure, 1000)
 
+        elt("userphoto").src += "https://userphoto.univ-paris1.fr/" + (userAttrs.supannEtuId ? "?numetu=" + encodeURIComponent(userAttrs.supannEtuId) : '')
+
         JsBarcode("#barcode", userAttrs.employeeNumber || '000000000000', { height: 50, fontSize: 8, width: 2.5 });
 
         if (userAttrs.ESCN) {
@@ -122,8 +124,6 @@
 	
     let uid = impersonate()
     
-    elt("userphoto").src += "https://userphoto.univ-paris1.fr/" + (uid ? "?uid=" + encodeURIComponent(uid) : '')
-
     let ws_params = { callback: "on_ws" }
     if (uid) ws_params.uid = uid
     loadScript("https://wsgroups.univ-paris1.fr/carte-etu.php", ws_params)
