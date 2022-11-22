@@ -135,16 +135,21 @@ function computeTries(apps) {
 
 var apps_tries;
 var searchWordsReg = [];
+var searchStemmedWordsReg = [];
 var searchWords;
 var search_services;
 
 
 function matches_search(app) {
-  if (searchWordsReg.length === 0) return true;
+  if (searchStemmedWordsReg.length === 0) return 0;
   var allValues = cachedAppValues(app);
-  return simpleEvery(searchWordsReg, function (re) {
+  if (simpleEvery(searchWordsReg, function (re) {
     return allValues.match(re);
-  });
+  })) return 2;
+  if (simpleEvery(searchStemmedWordsReg, function (re) {
+    return allValues.match(re);
+  })) return 1;
+  return 0;
 }
 
 function apps_approxSearch(searchWords) {
@@ -188,12 +193,21 @@ function setSearchWords(toMatch) {
         searchWords = words;
         var stemmed_words = words.map(minimal_french_stemmer);
     
-        searchWordsReg = stemmed_words.map(function (word) { return new RegExp(word); });
+        searchWordsReg = words.map(function (word) { return new RegExp(word); });
+        searchStemmedWordsReg = stemmed_words.map(function (word) { return new RegExp(word); });
         searchAnyWords = new RegExp(words.concat(stemmed_words).join('|'), 'gi');
     } else {
-        searchWords = searchWordsReg = [];
+        searchWords = searchWordsReg = searchStemmedWordsReg = [];
         searchAnyWords = null;
     }
+}
+
+function sortBy(l, f) {
+    return l.sort(function ( a, b ) {
+        var a_ = f(a);
+        var b_ = f(b);
+        return a_ < b_ ? -1 : a_ > b_ ? 1 : 0;
+    });
 }
 
 function searchApps() {
@@ -201,12 +215,18 @@ function searchApps() {
     var l = [];
     h.simpleEach(appIds, function (appId) {
       var app = pE.validApps[appId];
-      if (app && app.tags[0] === "__hidden__") return;
-      if (app && matches_search(app)) l.push(app);
+      if (!app) return;
+      if (app.tags[0] === "__hidden__") return;
+      var score = matches_search(app);
+      if (score) {
+        app.match_score = score;
+        l.push(app);
+      }
     });
     return l;
   }
     var l = matchingApps(Object.keys(pE.validApps));
+    l = sortBy(l, function (e) { return -e.match_score });
     var links = l.map(computeLink);
     links.push("<li class='padding'>");
 
