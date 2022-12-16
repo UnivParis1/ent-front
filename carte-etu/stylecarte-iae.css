@@ -1,0 +1,45 @@
+/*==== sp�cifique IAE 6 d�c 2022 ====*/ 
+
+
+.logo-up1 img {
+  width: 60%;
+   margin-top:22px; 
+   margin-bottom : 10px;
+    margin-right: 10px; /* correction visuelle */ 
+}
+
+@media screen and (min-aspect-ratio: 13 / 9) { 
+.logo-up1 img {
+  max-width: 270px; 
+  margin-top:7px;
+  margin-bottom :4px;
+  }
+
+}
+
+h3 { color: #e68925; } 
+#diplome {  color: #9b5c18; }  
+
+.logo-carte-europeenne, .footer .qrcode-europeen , ul.pic li.chiffre{  display: none;} 
+
+ul.pic {
+  background: #e68925; 
+  border-left: 28px solid #fd9d35; 
+}
+   
+ul.pic li.timed { 
+  background: #9b5c18;
+  border-left: 50px solid #ca7820;
+  border-right: 20px solid #ca7820; 
+  padding: 3px 25px 1px 25px;
+    
+}
+  
+.logo-una-europa { text-align: center; }
+
+.logo-una-europa img { 
+  border : 0px  ; 
+  padding-left:  0px;
+  width: 41%; 
+  margin-top:10px; 
+}
