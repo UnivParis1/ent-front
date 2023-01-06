@@ -31,7 +31,7 @@
     </header>
                     
     <div data-role="content" class="content">	
-        <span id="sn">...</span>
+        <span id="supannNomDeNaissance">...</span>
         <br>
         <span id="givenName">...</span>  
         <p id="diplome">...</p>   
@@ -86,7 +86,7 @@
             userAttrs.anneeinsc = [inscr.anneeinsc, inscr.anneeinsc + 1].join('-')
             userAttrs.diplome = inscr.affect + " - " + inscr.typedip + " - " + inscr.etape
         }
-        for (const attr of ["supannEtuId", "sn", "givenName", "supannCodeINE", "anneeinsc", "diplome"]) {
+        for (const attr of ["supannEtuId", "supannNomDeNaissance", "givenName", "supannCodeINE", "anneeinsc", "diplome"]) {
             elt(attr).innerText = userAttrs[attr] || 'non étu'
         }
 
