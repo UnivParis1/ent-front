@@ -758,6 +758,7 @@ li.drag_drop_dest {
    float: left;
    border-radius : 4px; 
    max-height: 92px;
+   object-fit: cover;
 }
 
 .liste-service ul , .liste-news ul { 

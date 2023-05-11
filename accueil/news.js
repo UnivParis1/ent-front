@@ -19,7 +19,7 @@ function array_unique(array) {
 function formatOneNews(oneNews, i) {
     var html = "<div class='title'>" + oneNews.title + "</div>";
     if (oneNews.field_news_date) html += "<div class='date'>" + new Date(oneNews.field_news_date).toLocaleDateString() + "</div>";
-    html += "<div class='description'>" + (oneNews.field_lead || oneNews.body) + "</div>";
+    //html += "<div class='description'>" + (oneNews.field_lead || oneNews.body) + "</div>";
     let maybe_img = i === 0 ? "<span><img src='" + oneNews.img + "'></span>" : "";
     return "<li" + (i === 0 ? " class='a-la-une'" : "") + "><a href='" + oneNews.view_node + "'>" + maybe_img + html + "</a></li>";
     }
