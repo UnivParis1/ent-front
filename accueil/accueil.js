@@ -169,7 +169,6 @@ function onerror_iconUrl(elt) {
 
 function computeLink(app) {
   var url = app.url;
-//if (!url.match(/^http/)) url = pE.CONF.uportal_base_url + url.replace(/\/detached\//, "/max/");
   var img = app.img || '<img class="icon" alt="" src="' + iconUrl(app.fname) + '" draggable="false" onerror="onerror_iconUrl(this)">';
   var add_or_remove_favorite = 
     h.simpleContains(favorites, app.fname) ?
