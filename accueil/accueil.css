@@ -12,8 +12,8 @@ font-style: normal;
 }
 
 
-html {
-    font-family: Arial,Helvetica,sans-serif;
+html, body, a {
+    font-family: Arial, Helvetica,"Trebuchet MS", verdana, sans-serif;
 }
 
 #loading {
@@ -827,7 +827,7 @@ h4, .liste-news h4 {
 
 h4 a, .liste-news h4 a {
     font-size: 1.1rem;
-    font-family: Times, "Times New Roman", Georgia, serif;
+    font-family: Times, "Times New Roman", Georgia,"Liberation Serif", FreeSerif, serif;
     font-style: italic;
     text-decoration: none;
     text-align: right;
