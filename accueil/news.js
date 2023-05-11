@@ -1,5 +1,13 @@
 var nbNewsDisplayed = 4;
-var urls = [ 'https://www.pantheonsorbonne.fr/export/actualites' ];
+var public = { 
+    json: 'https://www.pantheonsorbonne.fr/export/actualites',
+    more_url: 'https://www.pantheonsorbonne.fr/actualites',
+    base_url: "https://www.pantheonsorbonne.fr",
+}
+var intranet = {
+    json: 'https://intranet-news.univ-paris1.fr/?cas-test=true',
+    more_url: 'https://intranet.pantheonsorbonne.fr/ent/intranet2/toutes-les-actualites',
+}
 
 function array_unique(array) {
     function onlyUnique(value, index, self) { 
@@ -8,48 +16,47 @@ function array_unique(array) {
     return array.filter(onlyUnique);
 }
 
-function formatOneNews(oneNews) {
+function formatOneNews(oneNews, i) {
     var html = "<div class='title'>" + oneNews.title + "</div>";
     if (oneNews.field_news_date) html += "<div class='date'>" + new Date(oneNews.field_news_date).toLocaleDateString() + "</div>";
     html += "<div class='description'>" + (oneNews.field_lead || oneNews.body) + "</div>";
-    return "<li><a href='https://www.pantheonsorbonne.fr" + oneNews.view_node + "'>" + html + "</a></li>";
-}
-
-var news, newsOffset = 0;
-
-function scrollNews(direction) {
-    newsOffset += direction;
-    displayNews();
-}
-
-function displayNews() {
-    function scroll_button(body, direction, allowed) {
-        return "<button " + (allowed ? "" : "disabled") + " onclick='scrollNews(" + direction + ")' class='scroll left'>" + body + "</button>";
+    let maybe_img = i === 0 ? "<span><img src='" + oneNews.img + "'></span>" : "";
+    return "<li" + (i === 0 ? " class='a-la-une'" : "") + "><a href='" + oneNews.view_node + "'>" + maybe_img + html + "</a></li>";
     }
     
-    var links = news.slice(newsOffset, newsOffset + nbNewsDisplayed).map(formatOneNews);
+function displayNews(news, more_news_url) {
+    var links = news.slice(0, 4).map(formatOneNews);
 
     var html = "<div>" + 
-                 scroll_button("❮", -1, newsOffset > 0) + 
                  "<ul>" + array_unique(links).join('') + "</ul>" + 
-                 scroll_button("❯", 1, newsOffset + nbNewsDisplayed < news.length) + 
+                 "<h4><a href='" + more_news_url + "'>Toutes les actualités</a></h4>"
                 "</div>";
     h.simpleQuerySelector(".liste-news").innerHTML = html;
 }
 
-function getNews(urls) {
-    var url = urls.shift();
-    xhr(url, 'GET', { responseType: 'json' }, null, function(err, news_) {
+function displayIntranetNews(news) {
+    displayNews(news, intranet.more_url)
+}
+
+function getPublicNews() {
+    xhr(public.json, 'GET', { responseType: 'json' }, null, function(err, news) {
         if (err) { 
             console.error(err); 
         }
-        news = news.concat(news_ || [])
-        if (urls.length && news.length < nbNewsDisplayed) {
-            getNews(urls);
-        } else if (news.length) {
-            displayNews();
+        for (const oneNews of news) {
+            oneNews.img = public.base_url + oneNews.field_media
         }
+        displayNews(news, public.more_url)
     })    
 }
-news = [];
-getNews(urls);
+function getIntranetNews() {
+    h.loadScript(intranet.json + "&callback=displayIntranetNews")
+}
+
+function handleNews(pE) {
+    if (pE.validApps.intranet) {
+        getIntranetNews()
+    } else {
+        getPublicNews();
+    }
+}

@@ -43,8 +43,6 @@
       <div id="title">Environnement numérique de travail (ENT)</div>
     </noscript>
     
-    <div class="subtitle"><a href="http://www.univ-paris1.fr">Université Paris 1 Panthéon-Sorbonne</a></div>
-
     <div class="main">
 
       <div class="search">        
@@ -62,13 +60,18 @@
 
       <div class="liste-any liste-favorites" ondrop="ondrop_favorite(event)" ondragenter="ondragenter_or_leave(event)" ondragleave="ondragenter_or_leave(event)" ondragover="event.preventDefault()">
         <div class="liste"></div>
-        <div class="advice"><img src="images/share.svg" alt=""> Glissez ici et organisez vos favoris
+        <div class="advice"><img src="images/share.svg" alt=""> Glissez/organisez vos favoris
             <img onclick="toggleFavoriteEditMode()" class="toggle-on" src="images/toggle-on.svg" alt="Activer la modification des favoris">
             <img onclick="toggleFavoriteEditMode()" class="toggle-off" src="images/toggle-off.svg" alt="Désactiver la modification des favoris">
         </div>
       </div>
 
-      <h2 class="liste-any">Suggestions ❮ <a href="#*" class="show-all">Voir tout</a><a class="show-less" href="#">Voir moins</a> ❯</h2>
+    <div class="services-and-news two-columns">
+     <div>
+      <h2 class="liste-any">
+        <span class="show-all">Applications les plus utilisées actuellement</span>
+        <span class="show-less">Mes applications <a href="#">Voir moins</a></span>
+      </h2>
 
       <div class="liste-any liste-service">
         <noscript>
@@ -78,20 +81,28 @@
         </noscript>
       </div>
 
-      <h2 class="liste-any">Actualités ❮ <a href="/intranet">Intranet</a> ❯</h2>
+      <h4><a href="#*" class="show-all">Toutes mes applications</a><a class="show-less" href="#">Voir moins</a></h4>
+     </div>
+     <div class="column-news">
 
-      <div class="liste-any liste-news"></div>
+      <h2 class="liste-any news-header"><a href="/intranet">
+        Accéder &#224; l&#39;Intranet</a>
+      </h2>
 
+      <div class="liste-any news">
+        <div class="liste-news"></div>
+      </div>
+     </div>
     </div>
     
 <script src="accueil.js"></script>
+<script src="news.js?v=20230511"></script>
 <script src="favorites.js"></script>
 <script src='/ProlongationENT/loader.js'></script>
 <script>
     if (!h) h = window.prolongation_ENT.helpers;
 </script>
 <script src="search.js"></script>
-<script src="news.js?v=20200915"></script>
 
 <script>
     if (/iPad|iPhone|iPod|Android/.test(navigator.userAgent)) {
