@@ -403,7 +403,7 @@ h3 {
 .liste-favorites ul {
     box-sizing: border-box;
     margin-bottom: 0;
-    padding : 2px 8px 1px; 
+    padding : 2px 4px 2px 0px;
 
 }
 
@@ -757,7 +757,7 @@ li.drag_drop_dest {
    height: auto;
    float: left;
    border-radius : 4px; 
-   max-height: 92px;
+   max-height: 88px;
    object-fit: cover;
 }
 
