@@ -261,7 +261,6 @@ function displayServices(nb) {
             html += computeServicesBlock(apps);
         }
         tabTitles.forEach(function (tagTitle) { tabBlock(tagTitle, tagTitle) });
-        tabBlock(undefined, 'Divers');
     } else {
         html = computeServicesBlock(matchingApps(undefined).slice(0, nb));
     }
