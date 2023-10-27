@@ -8,6 +8,7 @@
 </head>
 <body>
 <div data-role="page" id="pageCartePro">
+    <div class="background-heure"><div id="background-heure"></div></div>
     <header>
         <div class="gauche">
           <a href="https://www.enseignementsup-recherche.gouv.fr/"><img src="./img/1_MESR_RVB.svg" width="70%" alt="Logo MESR"></a>
@@ -84,6 +85,10 @@
     function set_heure() {
         elt('heure').innerText = (new Date()).toLocaleTimeString('fr-FR')
     }
+    function set_background_heure() {
+        const now = new Date()
+        elt('background-heure').innerText = now.toLocaleTimeString('fr-FR') + ":" + Math.trunc(now.getMilliseconds() / 100)
+    }
     function set_date() {
         elt('date').innerText = (new Date()).toLocaleDateString('fr-FR')
     }
@@ -101,6 +106,7 @@
         set_date()
         set_heure()
         setInterval(set_heure, 1000)
+        setInterval(set_background_heure, 90)
 
         JsBarcode("#barcode", userAttrs.employeeNumber || '000000000000', { height: 50, fontSize: 8, width: 2.5 });
 

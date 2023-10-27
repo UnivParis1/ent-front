@@ -1,5 +1,17 @@
 /* Carte professionnelle 8 juillet 2022 - YAM */
 
+.background-heure {
+    position: relative;
+}
+#background-heure {
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: -10px;
+    writing-mode: vertical-rl;
+    line-height: 1;
+    font-size: 86px;
+    opacity: 40%;
+}
+
 body {
   background: #ddd;
   font-size: 14px;
