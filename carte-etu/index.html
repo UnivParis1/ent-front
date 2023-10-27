@@ -8,6 +8,7 @@
 </head> 
 <body>    
 <div data-role="page" id="pageCarte" class="hidden" >
+    <div class="background-heure"><div id="background-heure"></div></div>
     <header>
         <h1 class="logo-up1" align="center">
             <a href="https://ent.univ-paris1.fr/"><img src="img/logo-univ-paris1.fr.svg" alt="Logo université Paris 1 Panthéon-Sorbonne"/></a>
@@ -77,6 +78,10 @@
     function set_heure() {
         elt('heure').innerText = (new Date()).toLocaleTimeString('fr-FR')
     }
+    function set_background_heure() {
+        const now = new Date()
+        elt('background-heure').innerText = now.toLocaleTimeString('fr-FR') + ":" + Math.trunc(now.getMilliseconds() / 100)
+    }
     function display_info(userAttrs) {
         console.log("display_info", userAttrs);
         if (userAttrs.anneeinsc) {
@@ -92,6 +97,7 @@
 
         set_heure()
         setInterval(set_heure, 1000)
+        setInterval(set_background_heure, 90)
 
         elt("userphoto").src += "https://userphoto.univ-paris1.fr/" + (userAttrs.supannEtuId ? "?numetu=" + encodeURIComponent(userAttrs.supannEtuId) : '')
 
